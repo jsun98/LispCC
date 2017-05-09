@@ -11,12 +11,10 @@
 
 #include <iostream>
 #include <string>
-#include <vector>
 
 class formattedIO {
 public:
-    static std::vector<std::string> readLine();
-    virtual ~formattedIO();
+    static std::string readLine();
 private:
     formattedIO ();
 };

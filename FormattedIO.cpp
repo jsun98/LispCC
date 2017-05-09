@@ -8,11 +8,8 @@
 
 #include "FormattedIO.hpp"
 
-std::vector<std::string> formattedIO::readLine() {
-    std::string token = "";
-    std::vector<std::string> line;
-    while (std::cin >> token) {
-        line.push_back(token);
-    }
+std::string formattedIO::readLine() {
+    std::string line = "";
+    getline(std::cin,line);
     return line;
 }

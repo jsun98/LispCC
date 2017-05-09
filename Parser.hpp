@@ -9,12 +9,16 @@
 #ifndef Parser_hpp
 #define Parser_hpp
 
-#
+#include "FormattedIO.hpp"
+#include <vector>
 
 class parser {
 public:
+    static std::vector<std::string> parse () ;
 private:
-protected:
+    parser();
+    static std::vector<std::string> tokenize(const std::string& rawInput);
+    static std::vector<std::string> process_syntax (const std::vector<std::string>& tokens);
 };
 
 #endif /* Parser_hpp */
