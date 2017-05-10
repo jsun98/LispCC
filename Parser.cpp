@@ -8,6 +8,7 @@
 
 #include "Parser.hpp"
 
+
 std::vector<std::string> Parser::tokenize(const std::string& rawInput) {
     std::vector<std::string> tokens;
     for (int i = 0; i < rawInput.length(); ++i) {
@@ -26,15 +27,17 @@ std::vector<std::string> Parser::tokenize(const std::string& rawInput) {
 }
 
 
-std::vector<std::string> Parser::process_syntax (const std::vector<std::string>& tokens) {
-    if (tokens.size()==0)
+S_Expression Parser::process_syntax (const std::vector<std::string>& tokens) {
+    if (tokens.size()==0) {
         throw "Syntax Error!";
-    if (tokens[0] == ")") {
+    } else if (tokens[0] == ")") {
         throw "Syntax Error!";
     } else if (tokens[0] == "(") {  //expression
+        std::vector<std::string> temp;
         int i = 0;
-        while (tokens[i]!=')') {
-            
+        while (tokens[i]!=")") {
+            temp.push_back(tokens[i]);
+            ++i;
         }
         
     } else {    //atom

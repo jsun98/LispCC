@@ -11,6 +11,7 @@
 
 #include "FormattedIO.hpp"
 #include "S_Expression.hpp"
+
 #include <vector>
 
 class Parser {
@@ -21,7 +22,7 @@ public:
 private:
     Parser();
     
-    static std::vector<std::string> process_syntax (const std::vector<std::string>& tokens);
+    static S_Expression process_syntax (const std::vector<std::string>& tokens);
 };
 
 #endif /* Parser_hpp */

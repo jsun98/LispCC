@@ -7,3 +7,7 @@
 //
 
 #include "S_Expression.hpp"
+
+S_Expression::S_Expression(std::vector<std::string>& s) : s(s) {};
+
+std::vector<std::string> S_Expression::value() { return s; }
