@@ -7,3 +7,12 @@
 //
 
 #include "Cell.hpp"
+
+Cell::~Cell() {
+    for (auto vi = ss.cbegin() ; vi != ss.cend(); vi++)
+        delete *vi;
+}
+
+size_t Cell::size() const {
+    return ss.size();
+}

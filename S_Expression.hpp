@@ -17,10 +17,10 @@ public:
     S_Expression(std::vector<std::string>& s);
     virtual ~S_Expression();
     void push(std::string& str);
-    void print();
+    void print() const;
     void clear();
-    size_t size();
-    std::vector<std::string> value();
+    size_t size() const;
+    std::vector<std::string> getExpression () const;
 private:
     std::vector<std::string> s;
 protected:

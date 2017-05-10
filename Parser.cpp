@@ -9,8 +9,8 @@
 #include "Parser.hpp"
 
 
-std::vector<std::string> Parser::tokenize(const std::string& rawInput) {
-    std::vector<std::string> tokens;
+std::deque<std::string> Parser::tokenize(const std::string& rawInput) {
+    std::deque<std::string> tokens;
     for (int i = 0; i < rawInput.length(); ++i) {
         while (rawInput[i] == ' ') ++i;
         if (rawInput[i] == '(') tokens.push_back("(");
@@ -27,15 +27,18 @@ std::vector<std::string> Parser::tokenize(const std::string& rawInput) {
 }
 
 
-S_Expression Parser::process_syntax (const std::vector<std::string>& tokens) {
+S_Expression Parser::process_syntax (std::deque<std::string>& tokens) {
     if (tokens.size()==0) {
         throw "Syntax Error!";
-    } else if (tokens[0] == ")") {
+    }
+    std::string token;
+    tokens.pop_front();
+    if (tokens[0] == ")") {
         throw "Syntax Error!";
     } else if (tokens[0] == "(") {  //expression
-        std::vector<std::string> temp;
+        std::deque<std::string> temp;
         int i = 0;
-        while (tokens[i]!=")") {
+        while (tokens[i]!=")" && tokens[i]!="(") {
             temp.push_back(tokens[i]);
             ++i;
         }

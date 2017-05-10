@@ -10,4 +10,6 @@
 
 S_Expression::S_Expression(std::vector<std::string>& s) : s(s) {};
 
-std::vector<std::string> S_Expression::value() { return s; }
+std::vector<std::string> S_Expression::getExpression() const { return s; }
+
+size_t S_Expression::size() const { return s.size(); }

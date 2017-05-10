@@ -12,17 +12,17 @@
 #include "FormattedIO.hpp"
 #include "S_Expression.hpp"
 
-#include <vector>
+#include <deque>
 
 class Parser {
 public:
-    static std::vector<std::string> parse () ;
-    static std::vector<std::string> tokenize(const std::string& rawInput);
+    static std::deque<std::string> parse () ;
+    
     virtual ~Parser();
 private:
     Parser();
-    
-    static S_Expression process_syntax (const std::vector<std::string>& tokens);
+    static std::deque<std::string> tokenize(const std::string& rawInput);
+    static S_Expression process_syntax (std::deque<std::string>& tokens);
 };
 
 #endif /* Parser_hpp */

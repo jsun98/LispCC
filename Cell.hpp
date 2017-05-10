@@ -9,6 +9,20 @@
 #ifndef Cell_hpp
 #define Cell_hpp
 
-#include <stdio.h>
+#include "S_Expression.hpp"
+
+class Cell {
+public:
+    Cell();
+    virtual ~Cell();
+    size_t size() const;
+    
+    
+private:
+    std::vector<S_Expression*> ss;
+    
+    
+    
+};
 
 #endif /* Cell_hpp */
