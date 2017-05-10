@@ -16,3 +16,7 @@ Cell::~Cell() {
 size_t Cell::size() const {
     return ss.size();
 }
+
+void Cell::push(S_Expression* se) {
+    ss.push_back(se);
+}

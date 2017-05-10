@@ -10,7 +10,8 @@
 #define Parser_hpp
 
 #include "FormattedIO.hpp"
-#include "S_Expression.hpp"
+#include "S_Expression.hpp";
+#include "Cell.hpp";
 
 #include <deque>
 

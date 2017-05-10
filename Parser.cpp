@@ -31,16 +31,23 @@ S_Expression Parser::process_syntax (std::deque<std::string>& tokens) {
     if (tokens.size()==0) {
         throw "Syntax Error!";
     }
-    std::string token;
+    Cell* c = new Cell();
+    std::string token = tokens[0];
     tokens.pop_front();
     if (tokens[0] == ")") {
         throw "Syntax Error!";
-    } else if (tokens[0] == "(") {  //expression
-        std::deque<std::string> temp;
+    } else if (token == "(") {  //expression
+        S_Expression* se = new S_Expression();
         int i = 0;
         while (tokens[i]!=")" && tokens[i]!="(") {
-            temp.push_back(tokens[i]);
+            se->push(tokens[i]);
             ++i;
+        }
+        if (tokens[i] == ")") {
+            c->push(se);
+        }
+        if (tokens[i] == "(") {
+            
         }
         
     } else {    //atom

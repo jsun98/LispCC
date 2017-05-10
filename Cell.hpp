@@ -16,6 +16,7 @@ public:
     Cell();
     virtual ~Cell();
     size_t size() const;
+    void push (S_Expression* se);
     
     
 private:
