@@ -12,11 +12,12 @@
 #include <iostream>
 #include <string>
 
-class formattedIO {
+class FormattedIO {
 public:
     static std::string readLine();
+    virtual ~FormattedIO();
 private:
-    formattedIO ();
+    FormattedIO ();
 };
 
 #endif /* STD_IN_hpp */

@@ -8,7 +8,7 @@
 
 #include "FormattedIO.hpp"
 
-std::string formattedIO::readLine() {
+std::string FormattedIO::readLine() {
     std::string line = "";
     getline(std::cin,line);
     return line;
