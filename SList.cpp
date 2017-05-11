@@ -12,7 +12,9 @@
 SList::SList(std::string s) : type(STRING), strAtom(s) {;}
 SList::SList(long int s) : type(INTEGER), intAtom(s) {;}
 SList::SList(long double s) : type(FLOAT), doubleAtom(s) {;}
-SList::SList(SList* s) : type(LIST), list(s)  {;}
+SList::SList(SList* s) : type(LIST)  {
+    list.push_back(s);
+}
 
 SList::~SList() {
     if (type==LIST)

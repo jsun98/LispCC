@@ -32,17 +32,34 @@ SList* Parser::process_syntax (std::deque<std::string>& tokens) {
     std::string token = tokens[0];
     tokens.pop_front();
     if (tokens[0] == "(") { //expression
-        SList* expr = nullptr;
+        SList* list = nullptr;
         while (tokens[0]!=")") {
-            if (expr)
-                expr->push(process_syntax(tokens));
+            if (list)
+                list->push(process_syntax(tokens));
             else
-                expr = new SList(process_syntax(tokens));
+                list = new SList(process_syntax(tokens));
         }
+        tokens.pop_front();
+        return list;
     } else if (token == ")") {
         throw "Syntax Error!";
     } else {    //atom
-        
+        return atomic(token);
     }
+}
+
+//Symbol
+SList* atomic (std::string s) {
+    return new SList(s);
+}
+
+//integer
+SList* atomic (long int s) {
+    return new SList(s);
+}
+
+//float
+SList* atomic (long double s) {
+    return new SList(s);
 }
 
