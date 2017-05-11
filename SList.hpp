@@ -14,20 +14,19 @@
 
 class SList {
 public:
-    SList();
-    SList(std::string s);
-    SList(int s);
-    SList(double s);
-    SList(SList* s);
-    virtual ~SList();
-
     void push(SList* s);
-    
     std::string getPrintString() const;
     void clear();
     size_t size() const;
     std::vector<std::string> getList () const;
     enum sType {SYMBOL, INTEGER, FLOAT, LIST};
+    
+    SList(sType type);
+    SList(std::string s);
+    SList(int s);
+    SList(double s);
+    SList(SList* s);
+    virtual ~SList();
 private:
     std::string strAtom;
     long int intAtom;

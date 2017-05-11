@@ -8,7 +8,7 @@
 
 #include "SList.hpp"
 
-
+SList::SList(sType type) : type(type) {;}
 SList::SList(std::string s) : type(SYMBOL), strAtom(s) {;}
 SList::SList(int s) : type(INTEGER), intAtom(s) {;}
 SList::SList(double s) : type(FLOAT), doubleAtom(s) {;}
