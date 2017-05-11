@@ -27,35 +27,22 @@ std::deque<std::string> Parser::tokenize(const std::string& rawInput) {
 }
 
 
-Cell Parser::process_syntax (std::deque<std::string>& tokens) {
-    if (tokens.size()==0) {
-        throw "Syntax Error!";
-    }
-    if (tokens.size()==1) { //atom
-        
-    }
-    Cell* c = new Cell();
+SList* Parser::process_syntax (std::deque<std::string>& tokens) {
+    if (tokens.size()==0) throw "Syntax Error!";
     std::string token = tokens[0];
     tokens.pop_front();
-    if (token == ")") {
+    if (tokens[0] == "(") { //expression
+        SList* expr = nullptr;
+        while (tokens[0]!=")") {
+            if (expr)
+                expr->push(process_syntax(tokens));
+            else
+                expr = new SList(process_syntax(tokens));
+        }
+    } else if (token == ")") {
         throw "Syntax Error!";
-    } else if (token == "(") {  //expression
-        S_Expression* se = new S_Expression();
-        int i = 0;
-        while (tokens[i]!=")") {
-            se->push(tokens[i]);
-            tokens.pop_front();
-            ++i;
-        }
-        if (tokens[i] == ")") {
-            c->push(se);
-        }
-        if (tokens[i] == "(") {
-            process_syntax(tokens);
-        }
     } else {    //atom
-
+        
     }
-    
 }
 

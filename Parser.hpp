@@ -10,9 +10,7 @@
 #define Parser_hpp
 
 #include "FormattedIO.hpp"
-#include "S_Expression.hpp";
-#include "Cell.hpp";
-
+#include "SList.hpp"
 #include <deque>
 
 class Parser {
@@ -23,7 +21,10 @@ public:
 private:
     Parser();
     static std::deque<std::string> tokenize(const std::string& rawInput);
-    static Cell process_syntax (std::deque<std::string>& tokens);
+    static SList* process_syntax (std::deque<std::string>& tokens);
+    static SList* atomic (std::string s);
+    static SList* atomic (long int s);
+    static SList* atomic (long double s);
 };
 
 #endif /* Parser_hpp */
