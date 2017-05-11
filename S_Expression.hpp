@@ -15,6 +15,8 @@
 class S_Expression {
 public:
     S_Expression();
+    S_Expression(std::string s);
+    S_Expression(std::vector<std::string> s);
     virtual ~S_Expression();
     void push(std::string& str);
     void print() const;

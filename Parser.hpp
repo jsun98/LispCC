@@ -23,7 +23,7 @@ public:
 private:
     Parser();
     static std::deque<std::string> tokenize(const std::string& rawInput);
-    static S_Expression process_syntax (std::deque<std::string>& tokens);
+    static Cell process_syntax (std::deque<std::string>& tokens);
 };
 
 #endif /* Parser_hpp */
