@@ -25,8 +25,6 @@ private:
     static std::deque<std::string> tokenize(const std::string rawInput);
     static SList* process_syntax (std::deque<std::string>& tokens);
     static SList* atomic (std::string s);
-    static SList* atomic (int s);
-    static SList* atomic (double s);
     static bool isNumber (std::string s);
     static bool isInteger (std::string s);
 };
