@@ -11,20 +11,24 @@
 
 #include "FormattedIO.hpp"
 #include "SList.hpp"
+#include <stdlib.h>
 #include <deque>
+#include <string>
 
 class Parser {
 public:
-    static std::deque<std::string> parse () ;
+    static SList* parse (const std::string rawInput) ;
     
     virtual ~Parser();
 private:
     Parser();
-    static std::deque<std::string> tokenize(const std::string& rawInput);
+    static std::deque<std::string> tokenize(const std::string rawInput);
     static SList* process_syntax (std::deque<std::string>& tokens);
     static SList* atomic (std::string s);
-    static SList* atomic (long int s);
-    static SList* atomic (long double s);
+    static SList* atomic (int s);
+    static SList* atomic (double s);
+    static bool isNumber (std::string s);
+    static bool isInteger (std::string s);
 };
 
 #endif /* Parser_hpp */

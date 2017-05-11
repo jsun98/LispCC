@@ -6,8 +6,8 @@
 //  Copyright © 2017 Josh Sun. All rights reserved.
 //
 
-#ifndef STD_IN_hpp
-#define STD_IN_hpp
+#ifndef FormattedIO_hpp
+#define FormattedIO_hpp
 
 #include <iostream>
 #include <string>

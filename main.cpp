@@ -7,6 +7,7 @@
 //
 
 #include "Parser.hpp"
+#include "SList.hpp"
 #include "FormattedIO.hpp"
 
 using namespace std;
@@ -16,10 +17,8 @@ int main(int argc, const char * argv[]) {
     while (true) {
         string line;
         line = FormattedIO::readLine();
-        vector<string> tokens = Parser::tokenize(line);
-        for (int i = 0 ; i < tokens.size(); i++) {
-            cout << tokens[i] << endl;
-        }
+        SList* list = Parser::parse(line);
+        cout << list->getPrintString() << endl;
     }
     return 0;
 }
