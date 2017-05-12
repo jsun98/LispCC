@@ -9,40 +9,35 @@
 #ifndef SList_hpp
 #define SList_hpp
 
-#include <deque>
+#include <vector>
 #include <string>
 
 
 
 class SList {
 public:
-    enum sType {SYMBOL, INTEGER, FLOAT, LIST};
+    enum sType {SYMBOL, NUMBER, LIST};
     
-    void push(SList* s);
+    void push(SList s);
     std::string getPrintString() const;
     size_t size() const;
-    std::deque<SList*> getList () const;
+    std::vector<SList> getList () const;
     sType getType() const;
     
     std::string val();
 
-    SList(std::string s);
-    SList(int s);
-    SList(double s);
-    SList(SList* s);
-    SList(std::deque<SList*> s);
-    virtual ~SList();
+    SList(std::string s, sType t);
+    SList(SList s, sType t);
+    SList(std::vector<SList> s, sType t);
 private:
-    std::string strAtom;
-    int intAtom;
-    double doubleAtom;
-    std::deque<SList*> list;
+    std::string value;
+    std::vector<SList> list;
     
     sType type;
     
     
 };
 
-typedef std::deque<SList*> listType;
+typedef std::vector<SList> listType;
 
 #endif /* SList_hpp */

@@ -8,7 +8,7 @@
 
 #include "Parser.hpp"
 
-SList* Parser::parse(const std::string rawInput) {
+SList Parser::parse(const std::string rawInput) {
     std::deque<std::string> temp = tokenize(rawInput);
     return process_syntax(temp);
 }
@@ -32,36 +32,29 @@ std::deque<std::string> Parser::tokenize(const std::string rawInput) {
 }
 
 
-SList* Parser::process_syntax (std::deque<std::string>& tokens) {
+SList Parser::process_syntax (std::deque<std::string>& tokens) {
     if (tokens.size()==0) throw "Syntax Error: Unexpected End of Line";
     std::string token = tokens[0];
     tokens.pop_front();
     if (token == "(") { //expression
-        SList* list = nullptr;
+        SList list ("",SList::LIST);
         while (tokens[0]!=")") {
-            if (list)
-                list->push(process_syntax(tokens));
-            else
-                list = new SList(process_syntax(tokens));
+            list.push(process_syntax(tokens));
         }
         tokens.pop_front();
         return list;
     } else if (token == ")") {
         throw "Syntax Error: Unexpected Syntax ')'";
     } else {    //atom
-
         return atomic(token);
     }
 }
 
-SList* Parser::atomic (std::string s) {
+SList Parser::atomic (std::string s) {
     if (isNumber(s)) {
-        if (isInteger(s))
-            return new SList(atoi(s.c_str()));  //integer
-        else
-            return new SList(atof(s.c_str()));  //double/float
+        return SList(s.c_str(), SList::NUMBER);  //double/float
     }
-    return new SList(s);    //symbol
+    return SList(s, SList::SYMBOL);    //symbol
 }
 
 bool Parser::isNumber (std::string s) {
