@@ -8,16 +8,22 @@
 
 #include "Eval.hpp"
 
-SList* Eval::evaluate (SList* s, envType env) {
+SList* Eval::evaluate (const SList* s, envType env) {
     listType v = s->getList();
-    if (s->getType() == SList::SYMBOL) {
-        if (env.find(v[0]->val())!=env.cend()) {
-            proc f = env[v[0]->val()];
-            *f(new std::vector(v.cbegin()+1,v.cend()));
+    SList* token = v.front();
+    v.pop_front();
+    
+    if (token->getType() == SList::SYMBOL) {
+        if (env.find(token->val())!=env.cend()) {   //proc
+            SList* temp = new SList(v);
+            proc f = env[token->val()];
+            return f(temp);
         }
     } else {
         
     }
+    
+    return nullptr;
     
     
 }

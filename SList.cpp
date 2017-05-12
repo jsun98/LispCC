@@ -14,6 +14,9 @@ SList::SList(double s) : type(FLOAT), doubleAtom(s) {;}
 SList::SList(SList* s) : type(LIST)  {
     list.push_back(s);
 }
+SList::SList(listType s) : type(LIST)  {
+    list = s;
+}
 
 //recursively delete all lists
 SList::~SList() {

@@ -16,19 +16,19 @@
 
 
 typedef std::string symbol;
-typedef SList* (*proc)(const SList*& argv);
+typedef SList* (*proc)(SList* argv);
 typedef std::unordered_map<symbol, proc> envType;
-
+envType global_env;
 
 
 class SchemeNamespace {
 public:
-    virtual ~SchemeNamespace();
-    static envType global_env;
-private:
-    static SList* add (const SList*& argv);
-protected:
     SchemeNamespace();
+    virtual ~SchemeNamespace();
+private:
+    static SList* add (SList* argv);
+protected:
+    
     
     
 };

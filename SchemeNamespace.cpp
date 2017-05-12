@@ -12,7 +12,7 @@ SchemeNamespace::SchemeNamespace () {
     global_env["+"] = &(SchemeNamespace::add);
 }
 
-SList* SchemeNamespace::add (const SList*& argv)  {
+SList* SchemeNamespace::add (SList* argv)  {
     double dVal = 0.0;
     listType v = argv->getList();
     for (auto vi = v.cbegin(); vi != v.cend(); vi++) {

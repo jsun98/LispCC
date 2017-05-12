@@ -16,8 +16,7 @@
 
 class Eval {
 public:
-    static SList* evaluate (SList* s, std::unordered_map<std::string, proc> env);
-    
+    static SList* evaluate (const SList* s, std::unordered_map<std::string, proc> env);
     
     
 };

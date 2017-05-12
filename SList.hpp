@@ -30,6 +30,7 @@ public:
     SList(int s);
     SList(double s);
     SList(SList* s);
+    SList(std::deque<SList*> s);
     virtual ~SList();
 private:
     std::string strAtom;
