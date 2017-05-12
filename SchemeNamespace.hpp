@@ -11,28 +11,24 @@
 
 #include <unordered_map>
 #include <string>
-
-#include "Primitive_Procs.hpp"
+#include <stdlib.h>
 #include "SList.hpp"
 
 
 typedef std::string symbol;
-typedef SList* (*proc)(const std::vector<SList*>&);
+typedef SList* (*proc)(const SList*& argv);
+typedef std::unordered_map<symbol, proc> envType;
+
+
 
 class SchemeNamespace {
 public:
     virtual ~SchemeNamespace();
-    
-    virtual void restoreDefault() final;
+    static envType global_env;
 private:
-    
+    static SList* add (const SList*& argv);
 protected:
     SchemeNamespace();
-    std::unordered_map<symbol, proc> global_env;
-    
-    
-    
-    
     
     
 };

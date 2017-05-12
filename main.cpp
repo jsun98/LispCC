@@ -9,6 +9,8 @@
 #include "Parser.hpp"
 #include "SList.hpp"
 #include "FormattedIO.hpp"
+#include "SchemeNamespace.hpp"
+
 
 using namespace std;
 

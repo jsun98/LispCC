@@ -8,7 +8,6 @@
 
 #include "SList.hpp"
 
-SList::SList(sType type) : type(type) {;}
 SList::SList(std::string s) : type(SYMBOL), strAtom(s) {;}
 SList::SList(int s) : type(INTEGER), intAtom(s) {;}
 SList::SList(double s) : type(FLOAT), doubleAtom(s) {;}
@@ -30,9 +29,15 @@ SList::sType SList::getType() const {
     return type;
 }
 
-int SList::getVal_i() {return intAtom;}
-double SList::getVal_f() {return doubleAtom;}
+listType SList::getList () const {
+    return list;
+}
 
+std::string SList::val() {return type == INTEGER ? std::to_string(intAtom) : std::to_string(doubleAtom); }
+
+
+
+//for debugging
 std::string SList::getPrintString() const {
     std::string s = "";
     if (type == SYMBOL)

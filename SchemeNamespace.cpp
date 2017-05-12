@@ -9,5 +9,16 @@
 #include "SchemeNamespace.hpp"
 
 SchemeNamespace::SchemeNamespace () {
-    global_env["+"] = &add;
+    global_env["+"] = &(SchemeNamespace::add);
 }
+
+SList* SchemeNamespace::add (const SList*& argv)  {
+    double dVal = 0.0;
+    listType v = argv->getList();
+    for (auto vi = v.cbegin(); vi != v.cend(); vi++) {
+        dVal += atof((*vi)->val().c_str());
+    }
+    return new SList(dVal);
+}
+
+
