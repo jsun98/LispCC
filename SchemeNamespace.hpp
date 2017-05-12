@@ -12,10 +12,12 @@
 #include <unordered_map>
 #include <string>
 
+#include "Primitive_Procs.hpp"
 #include "SList.hpp"
 
 
 typedef std::string symbol;
+typedef SList* (*proc)(const std::vector<SList*>&);
 
 class SchemeNamespace {
 public:
@@ -26,7 +28,7 @@ private:
     
 protected:
     SchemeNamespace();
-    std::unordered_map<symbol, SList*> global_env;
+    std::unordered_map<symbol, proc> global_env;
     
     
     

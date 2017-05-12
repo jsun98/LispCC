@@ -20,6 +20,11 @@ public:
     size_t size() const;
     std::vector<std::string> getList () const;
     enum sType {SYMBOL, INTEGER, FLOAT, LIST};
+    sType getType() const;
+    
+    int getVal_i();
+    double getVal_f();
+    
     
     SList(sType type);
     SList(std::string s);
@@ -29,8 +34,8 @@ public:
     virtual ~SList();
 private:
     std::string strAtom;
-    long int intAtom;
-    long double doubleAtom;
+    int intAtom;
+    double doubleAtom;
     std::vector<SList*> list;
     sType type;
     

@@ -9,7 +9,5 @@
 #include "SchemeNamespace.hpp"
 
 SchemeNamespace::SchemeNamespace () {
-    global_env = {
-        
-    }
+    global_env["+"] = &add;
 }

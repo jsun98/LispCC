@@ -13,5 +13,6 @@
 #include <vector>
 #include <string>
 
+SList* add (const std::vector<SList*>& argv);
 
 #endif /* Primitive_Procs_hpp */

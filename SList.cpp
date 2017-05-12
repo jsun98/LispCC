@@ -26,6 +26,13 @@ void SList::push(SList* s) {
     list.push_back(s);
 }
 
+SList::sType SList::getType() const {
+    return type;
+}
+
+int SList::getVal_i() {return intAtom;}
+double SList::getVal_f() {return doubleAtom;}
+
 std::string SList::getPrintString() const {
     std::string s = "";
     if (type == SYMBOL)
