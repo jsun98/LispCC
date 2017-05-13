@@ -10,7 +10,9 @@
 
 SList::SList(std::string s, sType t) : value(s) , type(t) {;}
 SList::SList(SList s, sType t) : type(t)  {list.push_back(s);}
-SList::SList(listType s, sType t) : type(t)  {list = s;}
+SList::SList(SLists s, sType t) : type(t)  {list = s;}
+SList::SList(proc s, sType t) : p(s) , type(t) {;}
+
 
 void SList::push(SList s) {
     list.push_back(s);
@@ -20,8 +22,12 @@ SList::sType SList::getType() const {
     return type;
 }
 
-listType SList::getList () const {
+SLists SList::getList () const {
     return list;
+}
+
+SList::proc SList::getProc() const {
+    return p;
 }
 
 std::string SList::val() {return value;}
@@ -36,7 +42,7 @@ std::string SList::getPrintString() const {
         for (auto vi = list.cbegin(); vi != list.cend(); vi++)
             s+=(*vi).getPrintString();
         if (s.back() == ' ') s.pop_back();
-        s+=")";
+        s+=") ";
     }
     return s;
 }
