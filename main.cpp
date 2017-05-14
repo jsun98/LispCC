@@ -44,6 +44,18 @@ SList evaluate (SList s, envType env) {
 
 void env_setup (envType& native_env) {
     native_env["+"] = &add;
+    native_env["-"] = &subtract;
+    native_env["*"] = &multiply;
+    native_env["/"] = &divide;
+    native_env["mod"] = &mod;
+    native_env["sqrt"] = &sqrt;
+    native_env["sin"] = &sin;
+    native_env["cos"] = &cos;
+    native_env["tan"] = &tan;
+    native_env["asin"] = &arcsin;
+    native_env["acos"] = &arccos;
+    native_env["atan"] = &arctan;
+    native_env["abs"] = &abs;
 }
 
 int main(int argc, const char * argv[]) {
