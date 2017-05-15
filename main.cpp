@@ -16,9 +16,10 @@
 
 using namespace std;
 
+
 typedef std::string symbol;
-typedef SList (*proc)(SLists argv);
-typedef std::unordered_map<symbol, proc> envType;
+typedef std::unordered_map<symbol, SList> envType;
+
 
 SLists getArgs (SList l) {
     SLists unproc_args = l.getList();
@@ -29,44 +30,49 @@ SLists getArgs (SList l) {
     return args;
 }
 
-SList evaluate (SList s, envType env) {
+SList evaluate (SList s, envType& env) {
     if (s.getType() == SList::SYMBOL) {             //variable reference
-        return SList(env[s.val()],SList::PROC);
+        return env[s.val()];
     } else if (s.getType() == SList::NUMBER) {      //const literal
-        return SList(s.val(),SList::NUMBER);
+        return s;
     } else {                                        //procedure call
-        proc p = evaluate(s.getList()[0],env).getProc();
-        SLists args = getArgs(s);
-        for (int i = 0; i < args.size(); i++) args[i] = evaluate (args[i],env);
-        return p(args);
+        if (s.getList()[0].val() == "define") {
+            return env[s.getList()[1].val()] = evaluate(s.getList()[2],env);
+        } else {
+            SLists args = getArgs(s);
+            for (int i = 0; i < args.size(); i++)
+                args[i] = evaluate (args[i],env);
+            SList::proc p = evaluate(s.getList()[0],env).getProc();
+            return p(args);
+        }
     }
 }
 
-void env_setup (envType& native_env) {
-    native_env["+"] = &add;
-    native_env["-"] = &subtract;
-    native_env["*"] = &multiply;
-    native_env["/"] = &divide;
-    native_env["mod"] = &mod;
-    native_env["sqrt"] = &sqrt;
-    native_env["sin"] = &sin;
-    native_env["cos"] = &cos;
-    native_env["tan"] = &tan;
-    native_env["asin"] = &arcsin;
-    native_env["acos"] = &arccos;
-    native_env["atan"] = &arctan;
-    native_env["abs"] = &abs;
+
+void env_setup (envType& global_env) {
+    global_env.insert({"+",SList(&add,SList::PROC)});
+    global_env.insert({"-",SList(&subtract,SList::PROC)});
+    global_env.insert({"*",SList(&multiply,SList::PROC)});
+    global_env.insert({"/",SList(&divide,SList::PROC)});
+    global_env.insert({"mod",SList(&mod,SList::PROC)});
+    global_env.insert({"sqrt",SList(&sqrt,SList::PROC)});
+    global_env.insert({"sin",SList(&sin,SList::PROC)});
+    global_env.insert({"cos",SList(&cos,SList::PROC)});
+    global_env.insert({"tan",SList(&tan,SList::PROC)});
+    global_env.insert({"asin",SList(&arcsin,SList::PROC)});
+    global_env.insert({"acos",SList(&arccos,SList::PROC)});
+    global_env.insert({"atan",SList(&arctan,SList::PROC)});
+    global_env.insert({"abs",SList(&abs,SList::PROC)});
 }
 
 int main(int argc, const char * argv[]) {
-    envType native_env;
-    env_setup (native_env);
+    envType global_env;
+    env_setup (global_env);
     while (true) {
         string line;
         line = FormattedIO::readLine();
-        SList list(Parser::parse(line));
-        cout << list.getPrintString() << endl;
-        cout << evaluate(list, native_env).getPrintString() << endl;
+        //cout << list.getPrintString() << endl;
+        cout << evaluate(Parser::parse(line), global_env).getPrintString() << endl;
     }
     return 0;
 }

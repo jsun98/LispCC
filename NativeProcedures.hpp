@@ -13,7 +13,7 @@
 #include "stdlib.h"
 #include "math.h"
 
-
+//primitives
 SList add (SLists argv);
 SList subtract (SLists argv);
 SList multiply (SLists argv);
@@ -30,5 +30,6 @@ SList arctan (SLists arg);
 
 SList abs (SLists arg);
 
+//special forms
 
 #endif /* NativeProcedures_hpp */

@@ -17,7 +17,7 @@
 class SList {
 public:
     typedef SList (*proc)(std::vector<SList> argv);
-    enum sType {SYMBOL, NUMBER, LIST, PROC};
+    enum sType {SYMBOL, NUMBER, LIST};
     
     void push(SList s);
     std::string getPrintString() const;
@@ -28,9 +28,8 @@ public:
     std::vector<SList> getList () const;
     proc getProc() const;
     
-
+    SList();
     SList(std::string s, sType t);
-    SList(SList s, sType t);
     SList(std::vector<SList> s, sType t);
     SList(proc s, sType t);
 private:

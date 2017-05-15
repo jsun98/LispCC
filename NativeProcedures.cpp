@@ -74,4 +74,3 @@ SList arctan (SLists arg)  {
 SList abs (SLists arg) {
     return SList(std::to_string(fabs(atof(arg[0].val().c_str()))),SList::NUMBER);
 }
-

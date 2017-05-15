@@ -8,8 +8,8 @@
 
 #include "SList.hpp"
 
+SList::SList() {};
 SList::SList(std::string s, sType t) : value(s) , type(t) {;}
-SList::SList(SList s, sType t) : type(t)  {list.push_back(s);}
 SList::SList(SLists s, sType t) : type(t)  {list = s;}
 SList::SList(proc s, sType t) : p(s) , type(t) {;}
 
