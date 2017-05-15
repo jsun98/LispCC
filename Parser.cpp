@@ -58,7 +58,7 @@ SList Parser::atomic (std::string s) {
 }
 
 bool Parser::isNumber (std::string s) {
-    return s.find_first_not_of( "0123456789" ) == std::string::npos;
+    return s.find_first_not_of( "0123456789." ) == std::string::npos;
 }
 
 bool Parser::isInteger (std::string s) {
