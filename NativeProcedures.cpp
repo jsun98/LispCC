@@ -12,67 +12,67 @@ SList add (const SLists& argv)  {
     double dVal = atof(argv[0].val().c_str());
     for (auto vi = argv.begin()+1; vi != argv.end(); vi++)
         dVal += atof((*vi).val().c_str());
-    return SList(std::to_string(dVal));
+    return SList(dVal);
 }
 
 SList subtract (const SLists& argv)  {
     double dVal = atof(argv[0].val().c_str());
     for (auto vi = argv.begin()+1; vi != argv.end(); vi++)
         dVal -= atof((*vi).val().c_str());
-    return SList(std::to_string(dVal));
+    return SList(dVal);
 }
 
 SList multiply (const SLists& argv)  {
     double dVal = atof(argv[0].val().c_str());
     for (auto vi = argv.begin()+1; vi != argv.end(); vi++)
         dVal *= atof((*vi).val().c_str());
-    return SList(std::to_string(dVal));
+    return SList(dVal);
 }
 
 SList divide (const SLists& argv)  {
     double dVal = atof(argv[0].val().c_str());
     for (auto vi = argv.begin()+1; vi != argv.end(); vi++)
         dVal /= atof((*vi).val().c_str());
-    return SList(std::to_string(dVal));
+    return SList(dVal);
 }
 
 SList mod (const SLists& argv)  {
     int iVal = atoi(argv[0].val().c_str());
     for (auto vi = argv.begin()+1; vi != argv.end(); vi++)
         iVal %= atoi((*vi).val().c_str());
-    return SList(std::to_string(iVal));
+    return SList(iVal);
 }
 
 SList sqrt (const SLists& arg)  {
-    return SList(std::to_string(sqrt(atof(arg[0].val().c_str()))));
+    return SList(sqrt(atof(arg[0].val().c_str())));
 }
 
 SList sin (const SLists& arg)  {
-    return SList(std::to_string(sin(atof(arg[0].val().c_str()))));
+    return SList(sin(atof(arg[0].val().c_str())));
 }
 
 SList cos (const SLists& arg)  {
-    return SList(std::to_string(cos(atof(arg[0].val().c_str()))));
+    return SList(cos(atof(arg[0].val().c_str())));
 }
 
 SList tan (const SLists& arg)  {
-    return SList(std::to_string(tan(atof(arg[0].val().c_str()))));
+    return SList(tan(atof(arg[0].val().c_str())));
 }
 
 SList arcsin (const SLists& arg)  {
-    return SList(std::to_string(asin(atof(arg[0].val().c_str()))));
+    return SList(asin(atof(arg[0].val().c_str())));
 }
 
 SList arccos (const SLists& arg)  {
-    return SList(std::to_string(acos(atof(arg[0].val().c_str()))));
+    return SList(acos(atof(arg[0].val().c_str())));
 }
 
 SList arctan (const SLists& arg)  {
-    return SList(std::to_string(atan(atof(arg[0].val().c_str()))));
+    return SList(atan(atof(arg[0].val().c_str())));
 }
 
 SList abs (const SLists& arg) {
-    return SList(std::to_string(fabs(atof(arg[0].val().c_str()))));
+    return SList(fabs(atof(arg[0].val().c_str())));
 }
 
 SList greater_than (const SLists& argv) {

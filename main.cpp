@@ -41,6 +41,8 @@ SList evaluate (SList s, Environment* env) {
         return s.getList()[1];
     } else if (s.getList()[0].val() == "set!") {
         return (*(env->find(s.getList()[1].val())))[s.getList()[1].val()] = evaluate(s.getList()[2],env);
+    } else if (s.getList()[0].val() == "if") {
+        return evaluate(s.getList()[1],env).val()=="#t" ? evaluate(s.getList()[2],env) : (evaluate(s.getList()[3],env).val() == "else" ? evaluate(s.getList()[4],env) : SList());
     } else {            //procedure call
         SList p = evaluate(s.getList()[0],env);
         SLists args = getArgs(s);
@@ -60,6 +62,7 @@ SList evaluate (SList s, Environment* env) {
 void env_setup (Environment* std_env) {
     std_env->env.insert({"#f",SList("#f")});
     std_env->env.insert({"#f",SList("#t")});
+    std_env->env.insert({"else",SList("else")});
     
     std_env->env.insert({"+",SList(&add)});
     std_env->env.insert({"-",SList(&subtract)});
