@@ -18,12 +18,12 @@ Environment::Environment (SLists params, SLists args, Environment* outerEnv) : o
     
 }
 
-SList Environment::find (symbol s) {
+envType* Environment::find (symbol s) {
     if (env.find(s)!=env.end()) {
-        return env[s];
+        return &env;
     }  else {
         if (outerEnv==nullptr) {
-            return SList();
+            return nullptr;
         } else {
             return outerEnv->find(s);
         }

@@ -29,7 +29,7 @@ SLists getArgs (SList l) {
 
 SList evaluate (SList s, Environment* env) {
     if (s.getType() == SList::SYMBOL) {             //variable reference
-        return env->find(s.val());
+        return (*(env->find(s.val())))[s.val()];
     } else if (s.getType() == SList::NUMBER) {      //constant literal
         return s;
     } else if (s.getList()[0].val() == "define") {
@@ -39,7 +39,9 @@ SList evaluate (SList s, Environment* env) {
         return s;
     } else if (s.getList()[0].val() == "quote") {
         return s.getList()[1];
-    }else {            //procedure call
+    } else if (s.getList()[0].val() == "set!") {
+        return (*(env->find(s.getList()[1].val())))[s.getList()[1].val()] = evaluate(s.getList()[2],env);
+    } else {            //procedure call
         SList p = evaluate(s.getList()[0],env);
         SLists args = getArgs(s);
         for (int i = 0; i < args.size(); i++)
