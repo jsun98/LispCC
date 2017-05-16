@@ -44,8 +44,10 @@ SList evaluate (SList s, Environment* env) {
             args[i] = evaluate (args[i],env);
         if (p.getType() == SList::LAMBDA) {
             return evaluate(p.getList()[2], new Environment(p.getList()[1].getList(),args,env));
-        } else {
+        } else if (p.getType()==SList::PROC) {
             return p.getProc()(args);
+        } else {
+            return evaluate(p,env);
         }
     }
 }
