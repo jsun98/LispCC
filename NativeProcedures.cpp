@@ -8,69 +8,94 @@
 
 #include "NativeProcedures.hpp"
 
-SList add (SLists argv)  {
+SList add (const SLists& argv)  {
     double dVal = atof(argv[0].val().c_str());
     for (auto vi = argv.begin()+1; vi != argv.end(); vi++)
         dVal += atof((*vi).val().c_str());
     return SList(std::to_string(dVal));
 }
 
-SList subtract (SLists argv)  {
+SList subtract (const SLists& argv)  {
     double dVal = atof(argv[0].val().c_str());
     for (auto vi = argv.begin()+1; vi != argv.end(); vi++)
         dVal -= atof((*vi).val().c_str());
     return SList(std::to_string(dVal));
 }
 
-SList multiply (SLists argv)  {
+SList multiply (const SLists& argv)  {
     double dVal = atof(argv[0].val().c_str());
     for (auto vi = argv.begin()+1; vi != argv.end(); vi++)
         dVal *= atof((*vi).val().c_str());
     return SList(std::to_string(dVal));
 }
 
-SList divide (SLists argv)  {
+SList divide (const SLists& argv)  {
     double dVal = atof(argv[0].val().c_str());
     for (auto vi = argv.begin()+1; vi != argv.end(); vi++)
         dVal /= atof((*vi).val().c_str());
     return SList(std::to_string(dVal));
 }
 
-SList mod (SLists argv)  {
+SList mod (const SLists& argv)  {
     int iVal = atoi(argv[0].val().c_str());
     for (auto vi = argv.begin()+1; vi != argv.end(); vi++)
         iVal %= atoi((*vi).val().c_str());
     return SList(std::to_string(iVal));
 }
 
-SList sqrt (SLists arg)  {
+SList sqrt (const SLists& arg)  {
     return SList(std::to_string(sqrt(atof(arg[0].val().c_str()))));
 }
 
-SList sin (SLists arg)  {
+SList sin (const SLists& arg)  {
     return SList(std::to_string(sin(atof(arg[0].val().c_str()))));
 }
 
-SList cos (SLists arg)  {
+SList cos (const SLists& arg)  {
     return SList(std::to_string(cos(atof(arg[0].val().c_str()))));
 }
 
-SList tan (SLists arg)  {
+SList tan (const SLists& arg)  {
     return SList(std::to_string(tan(atof(arg[0].val().c_str()))));
 }
 
-SList arcsin (SLists arg)  {
+SList arcsin (const SLists& arg)  {
     return SList(std::to_string(asin(atof(arg[0].val().c_str()))));
 }
 
-SList arccos (SLists arg)  {
+SList arccos (const SLists& arg)  {
     return SList(std::to_string(acos(atof(arg[0].val().c_str()))));
 }
 
-SList arctan (SLists arg)  {
+SList arctan (const SLists& arg)  {
     return SList(std::to_string(atan(atof(arg[0].val().c_str()))));
 }
 
-SList abs (SLists arg) {
+SList abs (const SLists& arg) {
     return SList(std::to_string(fabs(atof(arg[0].val().c_str()))));
+}
+
+SList greater_than (const SLists& argv) {
+    for (auto vi = argv.begin(); vi != argv.end()-1; vi++) {
+        if (atof((*(vi+1)).val().c_str()) >= atof((*vi).val().c_str()))
+            return SList("#f");
+    }
+    return SList("#t");
+}
+
+SList less_than (const SLists& argv) {
+    for (auto vi = argv.begin(); vi != argv.end()-1; vi++) {
+        if (atof((*(vi+1)).val().c_str()) <= atof((*vi).val().c_str()))
+            return SList("#f");
+    }
+    return SList("#t");
+}
+
+SList equal_num (const SLists& argv) {
+    for (auto vi = argv.begin(); vi != argv.end()-1; vi++) {
+        if (fabs(atof((*(vi+1)).val().c_str())-atof((*vi).val().c_str()))>0.00000001) {
+            return SList("#f");
+        }
+    }
+    return SList("#t");
 }

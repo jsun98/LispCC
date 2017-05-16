@@ -14,21 +14,25 @@
 #include "math.h"
 
 //primitives
-SList add (SLists argv);
-SList subtract (SLists argv);
-SList multiply (SLists argv);
-SList divide (SLists argv);
-SList mod (SLists argv);
-SList sqrt (SLists arg);
+SList add (const SLists& arg);
+SList subtract (const SLists& arg);
+SList multiply (const SLists& arg);
+SList divide (const SLists& arg);
+SList mod (const SLists& arg);
+SList sqrt (const SLists& arg);
 
-SList sin (SLists arg);
-SList cos (SLists arg);
-SList tan (SLists arg);
-SList arcsin (SLists arg);
-SList arccos (SLists arg);
-SList arctan (SLists arg);
+SList sin (const SLists& arg);
+SList cos (const SLists& arg);
+SList tan (const SLists& arg);
+SList arcsin (const SLists& arg);
+SList arccos (const SLists& arg);
+SList arctan (const SLists& arg);
 
-SList abs (SLists arg);
+SList abs (const SLists& arg);
+
+SList greater_than(const SLists& argv);
+SList less_than (const SLists& argv);
+SList equal_num (const SLists& argv);
 
 //special forms
 

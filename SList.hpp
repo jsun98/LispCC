@@ -21,7 +21,7 @@
 
 class SList {
 public:
-    typedef SList (*proc)(std::vector<SList> argv);
+    typedef SList (*proc)(const std::vector<SList>&);
     enum sType {SYMBOL, NUMBER, LIST, PROC, LAMBDA};
     
     void push(SList s);

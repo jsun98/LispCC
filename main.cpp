@@ -37,7 +37,9 @@ SList evaluate (SList s, Environment* env) {
     } else if (s.getList()[0].val() == "lambda") {
         s.setType(SList::LAMBDA);
         return s;
-    } else {            //procedure call
+    } else if (s.getList()[0].val() == "quote") {
+        return s.getList()[1];
+    }else {            //procedure call
         SList p = evaluate(s.getList()[0],env);
         SLists args = getArgs(s);
         for (int i = 0; i < args.size(); i++)
@@ -54,6 +56,9 @@ SList evaluate (SList s, Environment* env) {
 
 
 void env_setup (Environment* std_env) {
+    std_env->env.insert({"#f",SList("#f")});
+    std_env->env.insert({"#f",SList("#t")});
+    
     std_env->env.insert({"+",SList(&add)});
     std_env->env.insert({"-",SList(&subtract)});
     std_env->env.insert({"*",SList(&multiply)});
@@ -67,6 +72,9 @@ void env_setup (Environment* std_env) {
     std_env->env.insert({"acos",SList(&arccos)});
     std_env->env.insert({"atan",SList(&arctan)});
     std_env->env.insert({"abs",SList(&abs)});
+    std_env->env.insert({">",SList(&greater_than)});
+    std_env->env.insert({"<",SList(&less_than)});
+    std_env->env.insert({"=",SList(&equal_num)});
 }
 
 int main(int argc, const char * argv[]) {
@@ -76,7 +84,8 @@ int main(int argc, const char * argv[]) {
         string line;
         line = FormattedIO::readLine();
         //cout << list.getPrintString() << endl;
-        cout << evaluate(Parser::parse(line), std_env).getPrintString() << endl;
+        SList temp = evaluate(Parser::parse(line), std_env);
+        cout << temp.getPrintString() << endl;
     }
     return 0;
 }

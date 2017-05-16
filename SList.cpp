@@ -44,8 +44,10 @@ std::string SList::val() const {return value;}
 //for debugging
 std::string SList::getPrintString() const {
     std::string s = "";
-    if (type != LIST) {
+    if (type == NUMBER) {
         s+=(double_is_int(atof(value.c_str())) ? std::to_string((int)atof(value.c_str())) : value) + " " ;
+    } else if (type == SYMBOL) {
+        return value;
     } else {
         s+="(";
         for (auto vi = list.cbegin(); vi != list.cend(); vi++)
