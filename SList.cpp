@@ -9,12 +9,17 @@
 #include "SList.hpp"
 
 SList::SList() {};
-SList::SList(std::string s, sType t) : value(s) , type(t) {;}
-SList::SList(SLists s, sType t) : type(t)  {list = s;}
-SList::SList(proc s, sType t) : p(s) , type(t) {;}
+SList::SList(std::string s) : value(s) { type = SYMBOL;}
+SList::SList(double s) : value(std::to_string(s)) { type = NUMBER;}
+SList::SList(SLists s) {list = s; type = LIST;}
+SList::SList(proc s) : p(s) {type = PROC;}
 
 bool double_is_int(double trouble) {
     return fabs(trouble) == floor(fabs(trouble));
+}
+
+void SList::setType (sType t) {
+    type = t;
 }
 
 void SList::push(SList s) {

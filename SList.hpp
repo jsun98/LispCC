@@ -14,6 +14,7 @@
 #include <math.h>
 #include <stdlib.h>
 
+
 #include <iostream>
 
 
@@ -21,21 +22,22 @@
 class SList {
 public:
     typedef SList (*proc)(std::vector<SList> argv);
-    enum sType {SYMBOL, NUMBER, LIST, PROC};
+    enum sType {SYMBOL, NUMBER, LIST, PROC, LAMBDA};
     
     void push(SList s);
     std::string getPrintString() const;
     size_t size() const;
     sType getType() const;
-    
+    void setType(sType t);
     std::string val() const;
     std::vector<SList> getList () const;
     proc getProc() const;
     
     SList();
-    SList(std::string s, sType t);
-    SList(std::vector<SList> s, sType t);
-    SList(proc s, sType t);
+    SList(std::string s);
+    SList(double s);
+    SList(std::vector<SList> s);
+    SList(proc s);
 private:
     std::string value;
     std::vector<SList> list;

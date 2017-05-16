@@ -18,9 +18,11 @@ class Environment {
 public:
     Environment ();
     Environment (SLists params, SLists args, Environment* outerEnv);
-    virtual ~Environment();
-private:
+    void insert(symbol,SList);
     envType env;
+    
+private:
+    
     Environment* outerEnv;
 };
 #endif /* Environment_hpp */

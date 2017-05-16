@@ -37,12 +37,12 @@ SList Parser::process_syntax (std::deque<std::string>& tokens) {
     std::string token = tokens[0];
     tokens.pop_front();
     if (token == "(") { //expression
-        SList list ("",SList::LIST);
+        SLists list;
         while (tokens[0]!=")") {
-            list.push(process_syntax(tokens));
+            list.push_back(process_syntax(tokens));
         }
         tokens.pop_front();
-        return list;
+        return SList(list);
     } else if (token == ")") {
         throw "Syntax Error: Unexpected Syntax ')'";
     } else {    //atom
@@ -52,9 +52,9 @@ SList Parser::process_syntax (std::deque<std::string>& tokens) {
 
 SList Parser::atomic (std::string s) {
     if (isNumber(s)) {
-        return SList(s.c_str(), SList::NUMBER);  //double/float
+        return SList(atof(s.c_str()));  //double/float
     }
-    return SList(s, SList::SYMBOL);    //symbol
+    return SList(s);    //symbol
 }
 
 bool Parser::isNumber (std::string s) {
