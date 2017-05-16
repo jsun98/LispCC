@@ -33,7 +33,7 @@ SList::proc SList::getProc() const {
     return p;
 }
 
-std::string SList::val() {return value;}
+std::string SList::val() const {return value;}
 
 
 //for debugging

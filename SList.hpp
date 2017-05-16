@@ -28,7 +28,7 @@ public:
     size_t size() const;
     sType getType() const;
     
-    std::string val();
+    std::string val() const;
     std::vector<SList> getList () const;
     proc getProc() const;
     

@@ -17,6 +17,7 @@ typedef std::unordered_map<symbol, SList> envType;
 class Environment {
 public:
     Environment ();
+    Environment (SLists params, SLists args, Environment* outerEnv);
     virtual ~Environment();
 private:
     envType env;
