@@ -19,6 +19,7 @@ public:
     Environment ();
     Environment (SLists params, SLists args, Environment* outerEnv);
     void insert(symbol,SList);
+    SList find (symbol);
     envType env;
     
 private:

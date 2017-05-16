@@ -17,3 +17,15 @@ Environment::Environment (SLists params, SLists args, Environment* outerEnv) : o
     }
     
 }
+
+SList Environment::find (symbol s) {
+    if (env.find(s)!=env.end()) {
+        return env[s];
+    }  else {
+        if (outerEnv==nullptr) {
+            return SList();
+        } else {
+            return outerEnv->find(s);
+        }
+    }
+}
