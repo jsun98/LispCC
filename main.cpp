@@ -87,14 +87,22 @@ void env_setup (Environment* std_env) {
     std_env->env.insert({"=",SList(&equal_num)});
 }
 
+//repl
 int main(int argc, const char * argv[]) {
     Environment* std_env = new Environment;
     env_setup (std_env);
+    cout << FormattedIO::readLicense() << endl;;
     while (true) {
-        string line;
-        line = FormattedIO::readLine();
-        //cout << list.getPrintString() << endl;
-        SList temp = evaluate(Parser::parse(line), std_env);
+        SList temp;
+        try {
+            temp = evaluate(Parser::parse(FormattedIO::readLine()), std_env);
+        } catch (const char* msg) {
+            cerr << msg << endl;
+            continue;
+        } catch (...) {
+            cerr << "ERROR: Uncaught Exception" << endl;
+            continue;
+        }
         if (temp.val().length() != 0)
             cout << temp.getPrintString() << endl;
     }
