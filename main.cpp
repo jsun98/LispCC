@@ -33,16 +33,21 @@ SList evaluate (SList s, Environment* env) {
     } else if (s.getType() == SList::NUMBER) {      //constant literal
         return s;
     } else if (s.getList()[0].val() == "define") {
-        return env->env[s.getList()[1].val()] = evaluate(s.getList()[2],env);
+        env->env[s.getList()[1].val()] = evaluate(s.getList()[2],env);
+        return SList();
     } else if (s.getList()[0].val() == "lambda") {
         s.setType(SList::LAMBDA);
         return s;
     } else if (s.getList()[0].val() == "quote") {
         return s.getList()[1];
     } else if (s.getList()[0].val() == "set!") {
-        return (*(env->find(s.getList()[1].val())))[s.getList()[1].val()] = evaluate(s.getList()[2],env);
+        (*(env->find(s.getList()[1].val())))[s.getList()[1].val()] = evaluate(s.getList()[2],env);
+        return SList();
     } else if (s.getList()[0].val() == "if") {
         return evaluate(s.getList()[1],env).val()=="#t" ? evaluate(s.getList()[2],env) : (evaluate(s.getList()[3],env).val() == "else" ? evaluate(s.getList()[4],env) : SList());
+    } else if (s.getList()[0].val() == "begin") {
+        for (int i = 1; i < s.getList().size()-1; i++) evaluate(s.getList()[i], env);
+        return evaluate(s.getList()[s.getList().size()-1],env);
     } else {            //procedure call
         SList p = evaluate(s.getList()[0],env);
         SLists args = getArgs(s);
@@ -90,7 +95,8 @@ int main(int argc, const char * argv[]) {
         line = FormattedIO::readLine();
         //cout << list.getPrintString() << endl;
         SList temp = evaluate(Parser::parse(line), std_env);
-        cout << temp.getPrintString() << endl;
+        if (temp.val().length() != 0)
+            cout << temp.getPrintString() << endl;
     }
     return 0;
 }
