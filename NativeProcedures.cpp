@@ -116,3 +116,10 @@ SList less_equal (const SLists& argv) {
     return SList("#t");
 }
 
+SList append (const SLists& argv) {
+    SLists l = argv.begin()->getList();
+    for (auto vi = argv.begin()+1; vi != argv.end(); vi++) {
+        l.insert(l.end(), vi->getList().begin(), vi->getList().end());
+    }
+    return SList(l);
+}

@@ -31,6 +31,7 @@ public:
     void setType(sType t);
     std::string val() const;
     std::vector<SList> getList () const;
+    std::string listToString();
     proc getProc() const;
     
     SList();

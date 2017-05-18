@@ -39,12 +39,16 @@ SList evaluate (SList s, Environment* env) {
         s.setType(SList::LAMBDA);
         return s;
     } else if (s.getList()[0].val() == "quote") {
-        return s.getList()[1];
+        if (s.getList()[1].getType() == SList::SYMBOL) {
+            return s.getList()[1];
+        } else {
+            return SList("("+s.getList()[1].listToString()+")");
+        }
     } else if (s.getList()[0].val() == "set!") {
         (*(env->find(s.getList()[1].val())))[s.getList()[1].val()] = evaluate(s.getList()[2],env);
         return SList();
     } else if (s.getList()[0].val() == "if") {
-        return evaluate(s.getList()[1],env).val()=="#t" ? evaluate(s.getList()[2],env) : (evaluate(s.getList()[3],env).val() == "else" ? evaluate(s.getList()[4],env) : SList());
+        return evaluate(s.getList()[1],env).val()=="#t" ? evaluate(s.getList()[2],env) : (s.getList()[3].val() == "else" ? evaluate(s.getList()[4],env) : SList());
     } else if (s.getList()[0].val() == "begin") {
         for (int i = 1; i < s.getList().size()-1; i++) evaluate(s.getList()[i], env);
         return evaluate(s.getList()[s.getList().size()-1],env);
@@ -67,7 +71,7 @@ SList evaluate (SList s, Environment* env) {
 void env_setup (Environment* std_env) {
     std_env->env.insert({"#f",SList("#f")});
     std_env->env.insert({"#f",SList("#t")});
-    std_env->env.insert({"else",SList("else")});
+    std_env->env.insert({"nil",SList("nil")});
     
     std_env->env.insert({"+",SList(&add)});
     std_env->env.insert({"-",SList(&subtract)});
@@ -85,6 +89,8 @@ void env_setup (Environment* std_env) {
     std_env->env.insert({">",SList(&greater_than)});
     std_env->env.insert({"<",SList(&less_than)});
     std_env->env.insert({"=",SList(&equal_num)});
+    std_env->env.insert({"=",SList(&equal_num)});
+    std_env->env.insert({"append",SList(&append)});
 }
 
 //repl
@@ -95,7 +101,9 @@ int main(int argc, const char * argv[]) {
     while (true) {
         SList temp;
         try {
-            temp = evaluate(Parser::parse(FormattedIO::readLine()), std_env);
+            std::string line = FormattedIO::readLine();
+            //std::cout << line << std::endl;
+            temp = evaluate(Parser::parse(line), std_env);
         } catch (const char* msg) {
             cerr << msg << endl;
             continue;
@@ -105,6 +113,7 @@ int main(int argc, const char * argv[]) {
         }
         if (temp.val().length() != 0)
             cout << temp.getPrintString() << endl;
+            
     }
     return 0;
 }

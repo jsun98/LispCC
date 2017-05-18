@@ -14,8 +14,13 @@ SList::SList(double s) : value(std::to_string(s)) { type = NUMBER;}
 SList::SList(SLists s) {list = s; type = LIST;}
 SList::SList(proc s) : p(s) {type = PROC;}
 
-bool double_is_int(double trouble) {
+bool double_is_int(std::string dVal) {
+    double trouble = atof(dVal.c_str());
     return fabs(trouble) == floor(fabs(trouble));
+}
+
+std::string double_to_int(std::string dVal) {
+    return std::to_string((int)atof(dVal.c_str()));
 }
 
 void SList::setType (sType t) {
@@ -40,12 +45,22 @@ SList::proc SList::getProc() const {
 
 std::string SList::val() const {return value;}
 
+std::string SList::listToString() {
+    if (type == SYMBOL) return value;
+    if (type == NUMBER) return double_is_int(value) ? double_to_int(value) : value;
+    std::string strVal = "";
+    for (auto vi = list.begin(); vi != list.end(); vi++) {
+        strVal += vi->listToString();
+    }
+    return strVal;
+}
+
 
 //for debugging
 std::string SList::getPrintString() const {
     std::string s = "";
     if (type == NUMBER) {
-        s+=(double_is_int(atof(value.c_str())) ? std::to_string((int)atof(value.c_str())) : value) + " " ;
+        s+=(double_is_int(value) ? double_to_int(value) : value) + " " ;
     } else if (type == SYMBOL) {
         return value;
     } else {
