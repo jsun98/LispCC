@@ -29,6 +29,8 @@ SLists getArgs (SList l) {
 
 SList evaluate (SList s, Environment* env) {
     if (s.getType() == SList::SYMBOL) {             //variable reference
+        if (s.val()[0] == '\'')
+            return SList(s.val().substr(1,s.val().length()-1));
         return (*(env->find(s.val())))[s.val()];
     } else if (s.getType() == SList::NUMBER) {      //constant literal
         return s;
@@ -102,7 +104,7 @@ int main(int argc, const char * argv[]) {
         SList temp;
         try {
             std::string line = FormattedIO::readLine();
-            //std::cout << line << std::endl;
+            std::cout << line << std::endl;
             temp = evaluate(Parser::parse(line), std_env);
         } catch (const char* msg) {
             cerr << msg << endl;
@@ -112,7 +114,7 @@ int main(int argc, const char * argv[]) {
             continue;
         }
         if (temp.val().length() != 0)
-            cout << temp.getPrintString() << endl;
+            cout << "=> " << temp.getPrintString() << endl;
             
     }
     return 0;

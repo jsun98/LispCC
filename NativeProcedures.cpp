@@ -117,9 +117,10 @@ SList less_equal (const SLists& argv) {
 }
 
 SList append (const SLists& argv) {
-    SLists l = argv.begin()->getList();
-    for (auto vi = argv.begin()+1; vi != argv.end(); vi++) {
-        l.insert(l.end(), vi->getList().begin(), vi->getList().end());
+    std::string l = "";
+    for (auto vi = argv.begin(); vi != argv.end(); vi++) {
+        l += vi->val();
+        if (vi != argv.end()-1) l+=" ";
     }
     return SList(l);
 }

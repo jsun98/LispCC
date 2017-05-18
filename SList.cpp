@@ -51,6 +51,8 @@ std::string SList::listToString() {
     std::string strVal = "";
     for (auto vi = list.begin(); vi != list.end(); vi++) {
         strVal += vi->listToString();
+        if (vi!=list.end()-1)
+            strVal += " ";
     }
     return strVal;
 }
