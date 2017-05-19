@@ -36,7 +36,17 @@ SList Parser::process_syntax (std::deque<std::string>& tokens) {
     if (tokens.size()==0) throw "Syntax Error: Unexpected End of Line";
     std::string token = tokens[0];
     tokens.pop_front();
-    if (token == "(") { //expression
+    if (token == "'") {
+        for (auto vi = tokens.begin(); vi != tokens.end(); vi++) {
+            if (*vi==")") {
+                tokens.insert(vi,")");
+                break;
+            }
+        }
+        tokens.push_front("quote");
+        tokens.push_front("(");
+        return process_syntax (tokens);
+    } else if (token == "(") { //expression
         SLists list;
         while (tokens[0]!=")") {
             list.push_back(process_syntax(tokens));
