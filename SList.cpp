@@ -62,13 +62,15 @@ std::string SList::listToString() {
 std::string SList::getPrintString() const {
     std::string s = "";
     if (type == NUMBER) {
-        s+=(double_is_int(value) ? double_to_int(value) : value) + " " ;
+        s+=(double_is_int(value) ? double_to_int(value) : value);
     } else if (type == SYMBOL) {
         return value;
     } else {
         s+="(";
-        for (auto vi = list.cbegin(); vi != list.cend(); vi++)
-            s+=(*vi).getPrintString();
+        for (auto vi = list.cbegin(); vi != list.cend(); vi++) {
+            s+=vi->getPrintString();
+            if (vi!=list.cend()-1) s+= " ";
+        }
         if (s.back() == ' ') s.pop_back();
         s+=") ";
     }

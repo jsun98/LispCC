@@ -41,11 +41,7 @@ SList evaluate (SList s, Environment* env) {
         s.setType(SList::LAMBDA);
         return s;
     } else if (s.getList()[0].val() == "quote") {
-        if (s.getList()[1].getType() == SList::SYMBOL) {
-            return s.getList()[1];
-        } else {
-            return SList("("+s.getList()[1].listToString()+")");
-        }
+        return s.getList()[1];
     } else if (s.getList()[0].val() == "set!") {
         (*(env->find(s.getList()[1].val())))[s.getList()[1].val()] = evaluate(s.getList()[2],env);
         return SList();
@@ -104,7 +100,7 @@ int main(int argc, const char * argv[]) {
         SList temp;
         try {
             std::string line = FormattedIO::readLine();
-            std::cout << line << std::endl;
+            //std::cout << line << std::endl;
             temp = evaluate(Parser::parse(line), std_env);
         } catch (const char* msg) {
             cerr << msg << endl;
@@ -113,8 +109,7 @@ int main(int argc, const char * argv[]) {
             cerr << "ERROR: Uncaught Exception" << endl;
             continue;
         }
-        if (temp.val().length() != 0)
-            cout << "=> " << temp.getPrintString() << endl;
+        cout << "=> " << temp.getPrintString() << endl;
             
     }
     return 0;
