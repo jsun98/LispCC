@@ -20,6 +20,8 @@ SList multiply (const SLists& arg);
 SList divide (const SLists& arg);
 SList mod (const SLists& arg);
 SList sqrt (const SLists& arg);
+SList max (const SLists& argv);
+SList min (const SLists& argv);
 
 SList sin (const SLists& arg);
 SList cos (const SLists& arg);

@@ -128,3 +128,22 @@ SList append (const SLists& argv) {
 SList apply (const SLists& argv) {
     return argv[0].getProc()(argv[1].getList());
 }
+
+SList max (const SLists& argv) {
+    double max = -std::numeric_limits<double>::infinity();
+    for (auto vi = argv.begin(); vi != argv.end(); vi++) {
+        if (atof(vi->val().c_str()) > max)
+            max = atof(vi->val().c_str());
+    }
+    return max;
+}
+
+SList min (const SLists& argv) {
+    double mix = std::numeric_limits<double>::infinity();
+    for (auto vi = argv.begin(); vi != argv.end(); vi++) {
+        if (atof(vi->val().c_str()) < mix)
+            mix = atof(vi->val().c_str());
+    }
+    return mix;
+}
+
