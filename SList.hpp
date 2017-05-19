@@ -34,6 +34,7 @@ public:
     std::string listToString();
     proc getProc() const;
     void pushList(std::vector<SList> s);
+    std::string getTypeString() const;
     
     SList();
     SList(std::string s);

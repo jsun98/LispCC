@@ -109,7 +109,7 @@ int main(int argc, const char * argv[]) {
             cerr << "ERROR: Uncaught Exception" << endl;
             continue;
         }
-        cout << "(dev msg) " << temp.getType() << endl;
+        cout << "(dev msg) " << temp.getTypeString() << endl;
         cout << "=> " << temp.getPrintString() << endl;
             
     }

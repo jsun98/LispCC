@@ -40,6 +40,14 @@ SList::sType SList::getType() const {
     return type;
 }
 
+std::string SList::getTypeString() const {
+    if (type == SYMBOL) return "SYMBOL";
+    else if (type == NUMBER) return "NUMBER";
+    else if (type == LIST) return "LIST";
+    else if (type == PROC) return "PROC";
+    else return "LAMBDA";
+}
+
 SLists SList::getList () const {
     return list;
 }
