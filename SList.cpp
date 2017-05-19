@@ -31,6 +31,11 @@ void SList::push(SList s) {
     list.push_back(s);
 }
 
+void SList::pushList(SLists s) {
+    for (auto vi = s.begin(); vi != s.end(); vi++)
+        list.push_back(*vi);
+}
+
 SList::sType SList::getType() const {
     return type;
 }
@@ -65,6 +70,10 @@ std::string SList::getPrintString() const {
         s+=(double_is_int(value) ? double_to_int(value) : value);
     } else if (type == SYMBOL) {
         return value;
+    } else if (type == PROC) {
+        return "PROC";
+    } else if (type == LAMBDA) {
+        return "LAMBDA";
     } else {
         s+="(";
         for (auto vi = list.cbegin(); vi != list.cend(); vi++) {

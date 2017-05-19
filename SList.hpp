@@ -33,6 +33,7 @@ public:
     std::vector<SList> getList () const;
     std::string listToString();
     proc getProc() const;
+    void pushList(std::vector<SList> s);
     
     SList();
     SList(std::string s);

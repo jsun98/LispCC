@@ -117,8 +117,9 @@ SList less_equal (const SLists& argv) {
 }
 
 SList append (const SLists& argv) {
-    SLists l;
+    SList l;
     for (auto vi = argv.begin(); vi != argv.end(); vi++) {
+        l.pushList(vi->getList());
         
     }
     return SList(l);
