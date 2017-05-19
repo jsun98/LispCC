@@ -124,3 +124,7 @@ SList append (const SLists& argv) {
     }
     return SList(l);
 }
+
+SList apply (const SLists& argv) {
+    return argv[0].getProc()(argv[1].getList());
+}
