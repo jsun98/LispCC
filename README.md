@@ -86,9 +86,23 @@ null?
 number?
 procedure?
 symbol?
+mod
+sqrt
+sin
+cos
+tan
+asin
+acos
+atan
 ```
 
 ### Files
+- FormattedIO.cpp: reading input from stdin
+- Parser.cpp: lexical analysis
+- SList.cpp: stores any scheme expression
+- NativeProcedures.cpp: defines the standard Scheme procedures
+- Environment.cpp: execution environement, can be nested
+- Main.cpp: REPL
 
 ### Example Scheme Programs
 
