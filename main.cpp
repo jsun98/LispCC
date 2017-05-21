@@ -90,6 +90,8 @@ void env_setup (Environment* std_env) {
     std_env->env.insert({"=",SList(&equal_num)});
     std_env->env.insert({"append",SList(&append)});
     std_env->env.insert({"apply",SList(&apply)});
+    std_env->env.insert({"max",SList(&max)});
+    std_env->env.insert({"min",SList(&min)});
 }
 
 //repl

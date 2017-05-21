@@ -37,6 +37,8 @@ SList less_than (const SLists& argv);
 SList equal_num (const SLists& argv);
 SList append (const SLists& argv);
 SList apply (const SLists& argv);
+SList max (const SLists& argv);
+SList max (const SLists& argv);
 //special forms
 
 #endif /* NativeProcedures_hpp */
