@@ -129,6 +129,23 @@ SList apply (const SLists& argv) {
     return argv[0].getProc()(argv[1].getList());
 }
 
+SList map (const SLists& argv) {
+    SList newList;
+    newList.setType(SList::LIST);
+    for (int i = 0; i < argv[1].getList().size(); i++) {
+        SLists n;
+        SList args;
+        args.setType(SList::LIST);
+        n.push_back(argv[0].getProc());
+        for (int j = 1; j < argv.size(); j++) {
+            args.push(argv[j].getList()[i]);
+        }
+        n.push_back(args);
+        newList.push(apply(n));
+    }
+    return newList;
+}
+
 SList max (const SLists& argv) {
     double max = -std::numeric_limits<double>::infinity();
     for (auto vi = argv.begin(); vi != argv.end(); vi++) {
@@ -167,4 +184,18 @@ SList eqv (const SLists& argv) {
     return SList("#t");
 }
 
+SList isNumber (const SLists& arg)  {
+    return arg[0].getType()==SList::NUMBER ? SList("#t") : SList("#f");
+}
 
+SList isProcedure (const SLists& arg)  {
+    return arg[0].getType()==SList::PROC ? SList("#t") : SList("#f");
+}
+
+SList isSymbol (const SLists& arg)  {
+    return arg[0].getType()==SList::SYMBOL ? SList("#t") : SList("#f");
+}
+
+SList isList (const SLists& arg)  {
+    return arg[0].getType()==SList::LIST ? SList("#t") : SList("#f");
+}

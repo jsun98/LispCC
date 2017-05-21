@@ -37,8 +37,14 @@ SList less_than (const SLists& argv);
 SList equal_num (const SLists& argv);
 SList append (const SLists& argv);
 SList apply (const SLists& argv);
+SList map (const SLists& argv);
 SList max (const SLists& argv);
 SList max (const SLists& argv);
 SList eqv (const SLists& argv);
+
+SList isNumber (const SLists& arg);
+SList isProcedure (const SLists& arg);
+SList isSymbol (const SLists& arg);
+SList isList (const SLists& arg);
 
 #endif /* NativeProcedures_hpp */

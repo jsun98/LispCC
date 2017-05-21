@@ -69,7 +69,6 @@ void env_setup (Environment* std_env) {
     std_env->env.insert({"#f",SList("#f")});
     std_env->env.insert({"#f",SList("#t")});
     std_env->env.insert({"nil",SList("nil")});
-    
     std_env->env.insert({"+",SList(&add)});
     std_env->env.insert({"-",SList(&subtract)});
     std_env->env.insert({"*",SList(&multiply)});
@@ -89,6 +88,7 @@ void env_setup (Environment* std_env) {
     std_env->env.insert({"=",SList(&equal_num)});
     std_env->env.insert({"append",SList(&append)});
     std_env->env.insert({"apply",SList(&apply)});
+    std_env->env.insert({"map",SList(&map)});
     std_env->env.insert({"max",SList(&max)});
     std_env->env.insert({"min",SList(&min)});
     std_env->env.insert({"eqv",SList(&eqv)});
