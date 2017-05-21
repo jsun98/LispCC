@@ -1,7 +1,9 @@
 # SchemePlusPlus
 A simple and fun Scheme interpreter written in C++ (C++11) 
 Inspired by:
+
 UC Berkley [CS61A: Structure and Interpretation of Computer Programs](https://cs61a.org)
+
 Peter Norvig's blog: [(How to Write a (Lisp) Interpreter (in Python))](http://norvig.com/lispy.html)
 
 ## Getting Started
