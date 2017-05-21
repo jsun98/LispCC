@@ -39,6 +39,6 @@ SList append (const SLists& argv);
 SList apply (const SLists& argv);
 SList max (const SLists& argv);
 SList max (const SLists& argv);
-//special forms
+SList eqv (const SLists& argv);
 
 #endif /* NativeProcedures_hpp */

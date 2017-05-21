@@ -139,11 +139,32 @@ SList max (const SLists& argv) {
 }
 
 SList min (const SLists& argv) {
-    double mix = std::numeric_limits<double>::infinity();
+    double min = std::numeric_limits<double>::infinity();
     for (auto vi = argv.begin(); vi != argv.end(); vi++) {
-        if (atof(vi->val().c_str()) < mix)
-            mix = atof(vi->val().c_str());
+        if (atof(vi->val().c_str()) < min)
+            min = atof(vi->val().c_str());
     }
-    return mix;
+    return min;
 }
+
+SList eqv (const SLists& argv) {
+    for (auto vi = argv.begin(); vi != argv.end()-1; vi++) {
+        if (vi->getType() != (vi+1)->getType()) {
+            return SList("#f");
+        } else if (vi->getType() == SList::SYMBOL) {
+            if (vi->val() == "#f" || vi->val() != (vi+1)->val())
+                return SList("#f");
+        } else if (vi->getType() == SList::NUMBER) {
+            if (fabs(atof((*(vi+1)).val().c_str())-atof((*vi).val().c_str()))>0.00000001)
+                return SList("#f");
+        } else if (vi->getType() == SList::LAMBDA || vi->getType() == SList::PROC) {
+            if (vi->getProc() != (vi+1)->getProc())
+                return SList("#f");
+        } else {
+            return eqv(vi->getList());
+        }
+    }
+    return SList("#t");
+}
+
 

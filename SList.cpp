@@ -9,10 +9,10 @@
 #include "SList.hpp"
 
 SList::SList() {};
-SList::SList(std::string s) : value(s) { type = SYMBOL;}
-SList::SList(double s) : value(std::to_string(s)) { type = NUMBER;}
-SList::SList(SLists s) {list = s; type = LIST;}
-SList::SList(proc s) : p(s) {type = PROC;}
+SList::SList(std::string s) : value(s), type (SYMBOL) {}
+SList::SList(double s) : value(std::to_string(s)), type(NUMBER) {}
+SList::SList(SLists s) : list(s), type(LIST) {}
+SList::SList(proc s) : p(s) , type(PROC) {}
 
 bool double_is_int(std::string dVal) {
     double trouble = atof(dVal.c_str());

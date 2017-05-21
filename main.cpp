@@ -35,8 +35,7 @@ SList evaluate (SList s, Environment* env) {
     } else if (s.getType() == SList::NUMBER) {      //constant literal
         return s;
     } else if (s.getList()[0].val() == "define") {
-        env->env[s.getList()[1].val()] = evaluate(s.getList()[2],env);
-        return SList();
+        return (env->env[s.getList()[1].val()] = evaluate(s.getList()[2],env));
     } else if (s.getList()[0].val() == "lambda") {
         s.setType(SList::LAMBDA);
         return s;
@@ -92,6 +91,7 @@ void env_setup (Environment* std_env) {
     std_env->env.insert({"apply",SList(&apply)});
     std_env->env.insert({"max",SList(&max)});
     std_env->env.insert({"min",SList(&min)});
+    std_env->env.insert({"eqv",SList(&eqv)});
 }
 
 //repl
