@@ -16,7 +16,7 @@
 class FormattedIO {
 public:
     static std::string readLine();
-    static std::string readLicense();
+    static std::string readFile(std::string fileName);
     virtual ~FormattedIO();
 private:
     FormattedIO ();

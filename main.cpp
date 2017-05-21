@@ -109,10 +109,11 @@ void env_setup (Environment* std_env) {
 int main(int argc, const char * argv[]) {
     Environment* std_env = new Environment;
     env_setup (std_env);
-    cout << FormattedIO::readLicense() << endl;;
+    cout << FormattedIO::readFile("message.txt") << endl;;
     while (true) {
         SList temp;
         try {
+            std::cout << "schm/> ";
             std::string line = FormattedIO::readLine();
             if (line.length()==0) continue;
             //std::cout << line << std::endl;
@@ -124,7 +125,7 @@ int main(int argc, const char * argv[]) {
             cerr << "Interpreter Error: Unhandled Exception" << endl;
             continue;
         }
-        cout << "(dev msg) " << temp.getTypeString() << endl;
+        //cout << "(dev msg) " << temp.getTypeString() << endl;
         cout << "=> " << temp.getPrintString() << endl;
             
     }

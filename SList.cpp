@@ -78,7 +78,12 @@ std::string SList::getPrintString() const {
     if (type == NUMBER) {
         s+=(double_is_int(value) ? double_to_int(value) : value);
     } else if (type == SYMBOL) {
-        return value;
+        if (value == "#t")
+            return "true";
+        else if (value == "#f")
+            return "false";
+        else
+            return value;
     } else if (type == PROC) {
         return "PROC";
     } else if (type == LAMBDA) {

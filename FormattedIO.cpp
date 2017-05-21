@@ -10,7 +10,6 @@
 
 std::string FormattedIO::readLine() {
     std::string line = "";
-    std::cout << ":>> ";
     getline(std::cin,line);
     if (line.find_first_not_of(" ")==std::string::npos)
         return "";
@@ -18,8 +17,8 @@ std::string FormattedIO::readLine() {
         return line;
 }
 
-std::string FormattedIO::readLicense() {
-    std::string fn = "./LICENSE";
+std::string FormattedIO::readFile(std::string fileName) {
+    std::string fn = fileName;
     std::ifstream rawFile (fn.c_str());
     std::string rawText = "";
     std::string line = "";
@@ -30,3 +29,4 @@ std::string FormattedIO::readLicense() {
     rawFile.close();
     return rawText;
 }
+
