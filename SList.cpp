@@ -8,7 +8,8 @@
 
 #include "SList.hpp"
 
-SList::SList() {};
+SList::SList(){};
+SList::SList(sType type): type(type) {};
 SList::SList(std::string s) : value(s), type (SYMBOL) {}
 SList::SList(double s) : value(std::to_string(s)), type(NUMBER) {}
 SList::SList(SLists s) : list(s), type(LIST) {}

@@ -130,12 +130,10 @@ SList apply (const SLists& argv) {
 }
 
 SList map (const SLists& argv) {
-    SList newList;
-    newList.setType(SList::LIST);
+    SList newList(SList::LIST);
     for (int i = 0; i < argv[1].getList().size(); i++) {
         SLists n;
-        SList args;
-        args.setType(SList::LIST);
+        SList args(SList::LIST);
         n.push_back(argv[0].getProc());
         for (int j = 1; j < argv.size(); j++) {
             args.push(argv[j].getList()[i]);
@@ -211,8 +209,7 @@ SList length (const SLists& arg)  {
 }
 
 SList list (const SLists& argv) {
-    SList newList;
-    newList.setType(SList::LIST);
+    SList newList(SList::LIST);
     for (auto vi = argv.begin(); vi != argv.end(); vi++) {
         newList.push(*vi);
     }
@@ -220,8 +217,7 @@ SList list (const SLists& argv) {
 }
 
 SList cons (const SLists& argv) {
-    SList newList;
-    newList.setType(SList::LIST);
+    SList newList(SList::LIST);
     newList.push(argv[0]);
     newList.push(argv[1]);
     return newList;
@@ -232,8 +228,7 @@ SList car (const SLists& argv) {
 }
 
 SList cdr (const SLists& argv) {
-    SList s;
-    s.setType(SList::LIST);
+    SList s(SList::LIST);
     for (int i = 1; i < argv[0].getList().size(); i++) {
         s.push(argv[0].getList()[i]);
     }

@@ -34,6 +34,8 @@ SList evaluate (SList s, Environment* env) {
         return (*(env->find(s.val())))[s.val()];
     } else if (s.getType() == SList::NUMBER) {      //constant literal
         return s;
+    } else if (s.getList().size() == 0) {
+        return s;
     } else if (s.getList()[0].val() == "define") {
         return (env->env[s.getList()[1].val()] = evaluate(s.getList()[2],env));
     } else if (s.getList()[0].val() == "lambda") {
@@ -118,7 +120,7 @@ int main(int argc, const char * argv[]) {
             cerr << msg << endl;
             continue;
         } catch (...) {
-            cerr << "ERROR: Uncaught Exception" << endl;
+            cerr << "Interpreter Error: Unhandled Exception" << endl;
             continue;
         }
         cout << "(dev msg) " << temp.getTypeString() << endl;

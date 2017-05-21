@@ -37,6 +37,7 @@ public:
     std::string getTypeString() const;
     
     SList();
+    SList(sType type);
     SList(std::string s);
     SList(double s);
     SList(std::vector<SList> s);
