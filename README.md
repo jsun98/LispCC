@@ -25,6 +25,8 @@ Overview of internal processes
 Program => Parse => Abstract Syntax Tree => eval => result
 ```
 
+## Installation
+
 ### Prerequisites
 
 ```
@@ -38,20 +40,21 @@ To clone this repo to your local machine:
 git clone
 ```
 
-*note Windows users must install cygwin
-
 Compile and Run:
 ```
 cd SchemePlusPlus
 make build
 ```
-## Representation of Scheme objects in C++
 
-## List of Supported Scheme Expressions
+## How it works
 
-## Files
+### Representation of Scheme objects in C++
 
-## Example Scheme Programs
+### List of Supported Scheme Expressions
+
+### Files
+
+### Example Scheme Programs
 
 ## Running Tests
 
