@@ -12,7 +12,10 @@ std::string FormattedIO::readLine() {
     std::string line = "";
     std::cout << ":>> ";
     getline(std::cin,line);
-    return line;
+    if (line.find_first_not_of(" ")==std::string::npos)
+        return "";
+    else
+        return line;
 }
 
 std::string FormattedIO::readLicense() {

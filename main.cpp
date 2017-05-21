@@ -114,6 +114,7 @@ int main(int argc, const char * argv[]) {
         SList temp;
         try {
             std::string line = FormattedIO::readLine();
+            if (line.length()==0) continue;
             //std::cout << line << std::endl;
             temp = evaluate(Parser::parse(line), std_env);
         } catch (const char* msg) {
