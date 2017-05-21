@@ -92,6 +92,15 @@ void env_setup (Environment* std_env) {
     std_env->env.insert({"max",SList(&max)});
     std_env->env.insert({"min",SList(&min)});
     std_env->env.insert({"eqv",SList(&eqv)});
+    std_env->env.insert({"number?",SList(&isNumber)});
+    std_env->env.insert({"list?",SList(&isList)});
+    std_env->env.insert({"procedure?",SList(&isProcedure)});
+    std_env->env.insert({"null?",SList(&isNull)});
+    std_env->env.insert({"length",SList(&length)});
+    std_env->env.insert({"list",SList(&list)});
+    std_env->env.insert({"cons",SList(&cons)});
+    std_env->env.insert({"car",SList(&car)});
+    std_env->env.insert({"cdr",SList(&cdr)});
 }
 
 //repl

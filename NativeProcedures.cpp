@@ -200,6 +200,12 @@ SList isList (const SLists& arg)  {
     return arg[0].getType()==SList::LIST ? SList("#t") : SList("#f");
 }
 
+SList isNull (const SLists& arg) {
+    if (arg[0].getType()!=SList::LIST) return SList("#f");
+    if (arg[0].getList().size()==0) return SList("#t");
+    return SList("#f");
+}
+
 SList length (const SLists& arg)  {
     return arg[0].getList().size();
 }
@@ -208,11 +214,29 @@ SList list (const SLists& argv) {
     SList newList;
     newList.setType(SList::LIST);
     for (auto vi = argv.begin(); vi != argv.end(); vi++) {
-        if (vi->getType() == SList::LIST) {
-            newList.push(vi->getList());
-        } else {
-            newList.push(SList(vi->val()));
-        }
+        newList.push(*vi);
     }
     return newList;
 }
+
+SList cons (const SLists& argv) {
+    SList newList;
+    newList.setType(SList::LIST);
+    newList.push(argv[0]);
+    newList.push(argv[1]);
+    return newList;
+}
+
+SList car (const SLists& argv) {
+    return argv[0].getList()[0];
+}
+
+SList cdr (const SLists& argv) {
+    SList s;
+    s.setType(SList::LIST);
+    for (int i = 1; i < argv[0].getList().size(); i++) {
+        s.push(argv[0].getList()[i]);
+    }
+    return s;
+}
+
