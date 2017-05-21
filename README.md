@@ -13,12 +13,16 @@ The interpreter is divided into 2 parts.
 ```
 1. Parsing (Lexical Analysis)
   - Read input program
-  - Break program into tokens (internal representation)
+  - Break program into tokens
   - Analysis of tokens according our Abstract Syntax Tree
 2. Evaluation & Execution 
-  - Internal representation is processed according to the semantics of Scheme
+  - Tokens are processed according to the semantics of Scheme
   - Carry out the computation
 ```
+
+Storing Scheme Expressions
+  - Scheme objects - defined in SList.cpp
+  - Environment - stored as STL unordered_map
 
 Overview of internal processes
 ```
@@ -49,8 +53,40 @@ make build
 ## How it works
 
 ### Representation of Scheme objects in C++
+| __Scheme Data Type__  | __Our Internal Representation__                  |
+|-----------------------|--------------------------------------------------|
+| Numbers               | C++'s 'int' and 'double'                         |
+| Symbols               | C++'s built-in `std::string` data type.          |
+| Booleans (`#t`, `#f`) | C++'s built-in `std::string` data type.          |
+| Pairs and Lists       | The `SList` class, defined in `SList.cpp`.       |
 
 ### List of Supported Scheme Expressions
+```
+quote, '
+if ... else ...
+define
+set!
+lambda
++, -, *, /, >, <, >=, <=
+=, eqv?
+abs
+append
+apply
+begin
+car
+cdr
+cons
+length
+list
+list?
+map
+max
+min
+null?
+number?
+procedure?
+symbol?
+```
 
 ### Files
 
