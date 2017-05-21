@@ -10,6 +10,7 @@ UC Berkley's [CS61A: Structure and Interpretation of Computer Programs](https://
 
 The interpreter is divided into 2 parts.
 
+```
 1. Parsing (Lexical Analysis)
   - Read input program
   - Break program into tokens (internal representation)
@@ -17,14 +18,17 @@ The interpreter is divided into 2 parts.
 2. Evaluation & Execution 
   - Internal representation is processed according to the semantics of Scheme
   - Carry out the computation
+```
 
-Program ➡ Parse ➡ Abstract Syntax Tree ➡ eval ➡ result
+Overview of internal processes
+```
+Program => Parse => Abstract Syntax Tree => eval => result
+```
 
 ### Prerequisites
 
 ```
 GNU GCC (C++11)
-Basic Understanding of LISP/Scheme
 ```
 
 ### Installing
@@ -36,11 +40,20 @@ git clone
 
 *note Windows users must install cygwin
 
-Compile:
+Compile and Run:
 ```
 cd SchemePlusPlus
 make build
 ```
+## Representation of Scheme objects in C++
+
+## List of Supported Scheme Expressions
+
+## Files
+
+## Example Scheme Programs
+
+## Running Tests
 
 ## Contributing
 
@@ -48,11 +61,11 @@ Feel free to contribute and/or create new issues
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/jsun98/SchemePlusPlus/tags). 
+I use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/jsun98/SchemePlusPlus/tags). 
 
 ## Authors
 
-* **Joshua Sun** - *Initial work* - [PurpleBooth](https://github.com/jsun98)
+* **Joshua Sun** - [github](https://github.com/jsun98)
 
 See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
@@ -62,4 +75,5 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-* Peter Norvig 
+* Peter Norvig, Director of Research, Google Inc.
+
