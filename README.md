@@ -42,11 +42,11 @@ GNU GCC (C++11)
 To clone this repo to your local machine:
 ```
 git clone
+cd SchemePlusPlus
 ```
 
 Compile and Run:
 ```
-cd SchemePlusPlus
 make build
 ```
 
