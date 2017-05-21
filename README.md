@@ -29,12 +29,22 @@ Overview of internal processes
 Program => Parse => Abstract Syntax Tree => eval => result
 ```
 
+Simple Demo Program
+```
+(define square (lambda (x) (* x x))
+=> LAMBDA
+(define pi 3.1416)
+=> 3.141600
+(if (> pi (square (pi))) (square (pi)) else (sin (sqrt (square (pi)))))
+=> -0.000007
+```
+
 ## Installation
 
 ### Prerequisites
 
 ```
-GNU GCC (C++11)
+GNU g++ -std=c++11
 ```
 
 ### Installing
@@ -45,9 +55,19 @@ git clone
 cd SchemePlusPlus
 ```
 
-Compile and Run:
+Compile and Link:
 ```
 make build
+```
+
+Run:
+```
+./scheme
+```
+
+Clean:
+```
+make clean
 ```
 
 ## How it works
