@@ -1,82 +1,58 @@
 # SchemePlusPlus
-A simple and fun Scheme interpreter written in C++ (C++11) 
-Inspired by:
+A simple and fun Scheme interpreter written in C++ (C++11). 
 
-UC Berkley [CS61A: Structure and Interpretation of Computer Programs](https://cs61a.org)
+Scheme is a simple but powerful functional language first developed in the 1990s at MIT. I've enjoyed reading Peter Norvig's blog [(How to Write a (Lisp) Interpreter (in Python))](http://norvig.com/lispy.html), in which he writes a Scheme interpreter in 90+ lines of Python. The C++ implementation is a bit more challenging and I thought I'd give it a try. 
 
-Peter Norvig's blog: [(How to Write a (Lisp) Interpreter (in Python))](http://norvig.com/lispy.html)
+UC Berkley's [CS61A: Structure and Interpretation of Computer Programs](https://cs61a.org) has also been very helpful.
 
-## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. Deployment on a live system will be available soon.
+## Core Concepts
+
+The interpreter is divided into 2 parts.
+
+1. Parsing (Lexical Analysis)
+  - Read input program
+  - Break program into tokens (internal representation)
+  - Analysis of tokens according our Abstract Syntax Tree
+2. Evaluation & Execution 
+  - Internal representation is processed according to the semantics of Scheme
+  - Carry out the computation
+
+Program ➡ Parse ➡ Abstract Syntax Tree ➡ eval ➡ result
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
-
 ```
-Give examples
+GNU GCC (C++11)
+Basic Understanding of LISP/Scheme
 ```
 
 ### Installing
 
-A step by step series of examples that tell you have to get a development env running
-
-Say what the step will be
-
+To clone this repo to your local machine:
 ```
-Give the example
+git clone
 ```
 
-And repeat
+*note Windows users must install cygwin
 
+Compile:
 ```
-until finished
+cd SchemePlusPlus
+make build
 ```
-
-End with an example of getting some data out of the system or using it for a little demo
-
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
-
-## Built With
-
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
+Feel free to contribute and/or create new issues
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/jsun98/SchemePlusPlus/tags). 
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Joshua Sun** - *Initial work* - [PurpleBooth](https://github.com/jsun98)
 
 See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
@@ -86,6 +62,4 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-* Hat tip to anyone who's code was used
-* Inspiration
-* etc
+* Peter Norvig 
