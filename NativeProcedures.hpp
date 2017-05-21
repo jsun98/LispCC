@@ -47,4 +47,6 @@ SList isProcedure (const SLists& arg);
 SList isSymbol (const SLists& arg);
 SList isList (const SLists& arg);
 
+SList length (const SLists& arg);
+
 #endif /* NativeProcedures_hpp */

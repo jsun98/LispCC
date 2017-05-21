@@ -199,3 +199,20 @@ SList isSymbol (const SLists& arg)  {
 SList isList (const SLists& arg)  {
     return arg[0].getType()==SList::LIST ? SList("#t") : SList("#f");
 }
+
+SList length (const SLists& arg)  {
+    return arg[0].getList().size();
+}
+
+SList list (const SLists& argv) {
+    SList newList;
+    newList.setType(SList::LIST);
+    for (auto vi = argv.begin(); vi != argv.end(); vi++) {
+        if (vi->getType() == SList::LIST) {
+            newList.push(vi->getList());
+        } else {
+            newList.push(SList(vi->val()));
+        }
+    }
+    return newList;
+}
