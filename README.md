@@ -51,23 +51,23 @@ GNU g++ -std=c++11
 
 To clone this repo to your local machine:
 ```
-git clone
-cd SchemePlusPlus
+$ git clone
+$ cd SchemePlusPlus
 ```
 
 Compile and Link:
 ```
-make build
+$ make build
 ```
 
 Run:
 ```
-./scheme
+$ ./scheme
 ```
 
 Clean:
 ```
-make clean
+$ make clean
 ```
 
 ## How it works
