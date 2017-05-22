@@ -1,7 +1,9 @@
 # SchemePlusPlus
 A simple and fun Scheme interpreter written in C++ (C++11). 
 
-Scheme is a simple but powerful functional language first developed in the 1990s at MIT. I've enjoyed reading Peter Norvig's blog [(How to Write a (Lisp) Interpreter (in Python))](http://norvig.com/lispy.html), in which he writes a Scheme interpreter in 90+ lines of Python. The C++ implementation is a bit more challenging and I thought I'd give it a try. 
+Scheme is a simple but powerful functional language first developed in the 1990s at MIT. 
+
+I've enjoyed reading Peter Norvig's blog [(How to Write a (Lisp) Interpreter (in Python))](http://norvig.com/lispy.html), in which he writes a Scheme interpreter in 90+ lines of Python. The C++ implementation is a bit more challenging and I thought I'd give it a try. 
 
 UC Berkley's [CS61A: Structure and Interpretation of Computer Programs](https://cs61a.org) has also been very helpful.
 
