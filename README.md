@@ -1,4 +1,4 @@
-# SchemePlusPlus
+# LispCC
 A simple and fun Scheme interpreter written in C++ (C++11). 
 
 Scheme is a simple but powerful functional language first developed in the 1990s at MIT. 
