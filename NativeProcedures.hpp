@@ -49,7 +49,7 @@ SList isList (const SLists& arg);
 SList isNull (const SLists& arg);
 
 SList length (const SLists& arg);
-SList list (const SLists& argv);
+SList lst (const SLists& argv);
 SList cons (const SLists& argv);
 SList car (const SLists& argv);
 SList cdr (const SLists& argv);

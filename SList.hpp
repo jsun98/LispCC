@@ -14,6 +14,14 @@
 #include <math.h>
 #include <stdlib.h>
 
+#ifdef _M_X64
+typedef int64_t int_t;
+#define a_to_int_t  atoll
+#else
+typedef long int_t;
+#define a_to_int_t  atoi
+#endif
+
 
 #include <iostream>
 

@@ -21,7 +21,7 @@ bool double_is_int(std::string dVal) {
 }
 
 std::string double_to_int(std::string dVal) {
-    return std::to_string((int)atof(dVal.c_str()));
+    return std::to_string((int_t)atof(dVal.c_str()));         // Use 64-bit int on x64 builds
 }
 
 void SList::setType (sType t) {

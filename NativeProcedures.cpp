@@ -37,9 +37,9 @@ SList divide (const SLists& argv)  {
 }
 
 SList mod (const SLists& argv)  {
-    int iVal = atoi(argv[0].val().c_str());
+    int_t iVal = a_to_int_t(argv[0].val().c_str());             // TODO: can we trap the possible overflow here?
     for (auto vi = argv.begin()+1; vi != argv.end(); vi++)
-        iVal %= atoi((*vi).val().c_str());
+        iVal %= a_to_int_t((*vi).val().c_str());
     return SList(iVal);
 }
 
@@ -170,7 +170,7 @@ SList eqv (const SLists& argv) {
             if (vi->val() == "#f" || vi->val() != (vi+1)->val())
                 return SList("#f");
         } else if (vi->getType() == SList::NUMBER) {
-            if (fabs(atof((*(vi+1)).val().c_str())-atof((*vi).val().c_str()))>0.00000001)
+            if (fabs(atof((*(vi+1)).val().c_str())-atof((*vi).val().c_str()))>0.00000001)   // TODO: There's gotta be a better way to do this...
                 return SList("#f");
         } else if (vi->getType() == SList::LAMBDA || vi->getType() == SList::PROC) {
             if (vi->getProc() != (vi+1)->getProc())
@@ -208,7 +208,7 @@ SList length (const SLists& arg)  {
     return arg[0].getList().size();
 }
 
-SList list (const SLists& argv) {
+SList lst (const SLists& argv) {
     SList newList(SList::LIST);
     for (auto vi = argv.begin(); vi != argv.end(); vi++) {
         newList.push(*vi);

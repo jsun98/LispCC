@@ -86,7 +86,7 @@ void env_setup (Environment* std_env) {
     std_env->env.insert({"abs",SList(&abs)});
     std_env->env.insert({">",SList(&greater_than)});
     std_env->env.insert({"<",SList(&less_than)});
-    std_env->env.insert({"=",SList(&equal_num)});
+    std_env->env.insert({"=",SList(&equal_num)});       // Why this twice?
     std_env->env.insert({"=",SList(&equal_num)});
     std_env->env.insert({"append",SList(&append)});
     std_env->env.insert({"apply",SList(&apply)});
@@ -99,7 +99,7 @@ void env_setup (Environment* std_env) {
     std_env->env.insert({"procedure?",SList(&isProcedure)});
     std_env->env.insert({"null?",SList(&isNull)});
     std_env->env.insert({"length",SList(&length)});
-    std_env->env.insert({"list",SList(&list)});
+    std_env->env.insert({"list",SList(&lst)});     // name conflict here.
     std_env->env.insert({"cons",SList(&cons)});
     std_env->env.insert({"car",SList(&car)});
     std_env->env.insert({"cdr",SList(&cdr)});

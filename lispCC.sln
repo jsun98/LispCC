@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.37903.5
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lispCC", "lispCC.vcxproj", "{C66BAE46-A20D-4AA2-8F3C-D65D23ED32C0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C66BAE46-A20D-4AA2-8F3C-D65D23ED32C0}.Debug|x64.ActiveCfg = Debug|x64
+		{C66BAE46-A20D-4AA2-8F3C-D65D23ED32C0}.Debug|x64.Build.0 = Debug|x64
+		{C66BAE46-A20D-4AA2-8F3C-D65D23ED32C0}.Debug|x86.ActiveCfg = Debug|Win32
+		{C66BAE46-A20D-4AA2-8F3C-D65D23ED32C0}.Debug|x86.Build.0 = Debug|Win32
+		{C66BAE46-A20D-4AA2-8F3C-D65D23ED32C0}.Release|x64.ActiveCfg = Release|x64
+		{C66BAE46-A20D-4AA2-8F3C-D65D23ED32C0}.Release|x64.Build.0 = Release|x64
+		{C66BAE46-A20D-4AA2-8F3C-D65D23ED32C0}.Release|x86.ActiveCfg = Release|Win32
+		{C66BAE46-A20D-4AA2-8F3C-D65D23ED32C0}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DBFF8B1A-8227-4984-BFCF-E92866F6A3A5}
+	EndGlobalSection
+EndGlobal

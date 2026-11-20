@@ -48,8 +48,10 @@ SList Parser::process_syntax (std::deque<std::string>& tokens) {
         return process_syntax (tokens);
     } else if (token == "(") { //expression
         SLists list;
-        while (tokens[0]!=")") {
+        while (tokens[0]!=")") { 
             list.push_back(process_syntax(tokens));
+            // throw an error if there is no trailing ) to the expression
+            if (tokens.size() == 0) throw "Syntax Error: Unexpected End of Line";
         }
         tokens.pop_front();
         return SList(list);
