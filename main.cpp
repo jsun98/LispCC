@@ -109,7 +109,7 @@ void env_setup (Environment* std_env) {
 int main(int argc, const char * argv[]) {
     Environment* std_env = new Environment;
     env_setup (std_env);
-    cout << FormattedIO::readFile("message.txt") << endl;;
+    cout << FormattedIO::readFile("message.txt") << endl;
     while (true) {
         SList temp;
         try {
