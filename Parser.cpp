@@ -17,12 +17,12 @@ SList Parser::parse(const std::string rawInput) {
 std::deque<std::string> Parser::tokenize(const std::string rawInput) {
     std::deque<std::string> tokens;
     for (int i = 0; i < rawInput.length(); ++i) {
-        while (rawInput[i] == ' ') ++i;
+        while (rawInput[i] == ' ' || rawInput[i] == '\t' || rawInput[i] == '\n') ++i;
         if (rawInput[i] == '(') tokens.push_back("(");
         else if (rawInput[i] == ')') tokens.push_back(")");
         else {
             int j = i;
-            while (rawInput[j] && rawInput[j] != ')' && rawInput[j] != '(' && rawInput[j] != ' ')
+            while (rawInput[j] && rawInput[j] != ')' && rawInput[j] != '(' && rawInput[j] != ' ' && rawInput[j] != '\t' && rawInput[j] != '\n')
                 ++j;
             tokens.push_back(rawInput.substr(i,j-i));
             i = j-1;

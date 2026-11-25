@@ -20,6 +20,9 @@ std::string FormattedIO::readLine() {
 std::string FormattedIO::readFile(std::string fileName) {
     std::string fn = fileName;
     std::ifstream rawFile (fn.c_str());
+    if (!rawFile.is_open())
+        return "";
+
     std::string rawText = "";
     std::string line = "";
     while (!rawFile.eof()) {

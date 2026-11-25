@@ -23,7 +23,7 @@ envType* Environment::find (symbol s) {
         return &env;
     }  else {
         if (outerEnv==nullptr) {
-            throw "ERROR: Unbound Symbol";
+            throw "ERROR: Unbound Symbol " + s;
         } else {
             return outerEnv->find(s);
         }

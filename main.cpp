@@ -14,6 +14,7 @@
 
 #include <unordered_map>
 
+SList load(std::string filename, Environment* env);
 
 using namespace std;
 
@@ -28,6 +29,7 @@ SLists getArgs (SList l) {
 }
 
 SList evaluate (SList s, Environment* env) {
+   // cout << "EVAL> " << s.getPrintString() << endl;   // for debugging
     if (s.getType() == SList::SYMBOL) {             //variable reference
         if (s.val()[0] == '\'')
             return SList(s.val().substr(1,s.val().length()-1));
@@ -51,6 +53,8 @@ SList evaluate (SList s, Environment* env) {
     } else if (s.getList()[0].val() == "begin") {
         for (int i = 1; i < s.getList().size()-1; i++) evaluate(s.getList()[i], env);
         return evaluate(s.getList()[s.getList().size()-1],env);
+    } else if (s.getList()[0].val() == "load") {
+        return load(s.getList()[1].val(), env);
     } else {            //procedure call
         SList p = evaluate(s.getList()[0],env);
         SLists args = getArgs(s);
@@ -86,7 +90,7 @@ void env_setup (Environment* std_env) {
     std_env->env.insert({"abs",SList(&abs)});
     std_env->env.insert({">",SList(&greater_than)});
     std_env->env.insert({"<",SList(&less_than)});
-    std_env->env.insert({"=",SList(&equal_num)});       // Why this twice?
+//    std_env->env.insert({"=",SList(&equal_num)});       // Why this twice?
     std_env->env.insert({"=",SList(&equal_num)});
     std_env->env.insert({"append",SList(&append)});
     std_env->env.insert({"apply",SList(&apply)});
@@ -118,7 +122,12 @@ int main(int argc, const char * argv[]) {
             if (line.length()==0) continue;
             //std::cout << line << std::endl;
             temp = evaluate(Parser::parse(line), std_env);
-        } catch (const char* msg) {
+        }
+        catch (const std::string msg) {   // NOTE: must match type passed as msg exactly
+            cerr << msg << endl;
+            continue;
+        }
+        catch (const char* msg) { 
             cerr << msg << endl;
             continue;
         } catch (...) {
@@ -130,4 +139,28 @@ int main(int argc, const char * argv[]) {
             
     }
     return 0;
+}
+
+SList load(std::string filename, Environment *env)
+{
+    SList temp;
+    std::string line = FormattedIO::readFile(filename);
+    if (line == "")
+    {
+        cerr << "Load: File not found or empty file" << endl;
+        return temp;
+    }
+
+    try {
+        // std::cout << line << std::endl;
+        temp = evaluate(Parser::parse(line), env);
+    }
+    catch (const char* msg) {
+        cerr << msg << endl;
+    }
+    catch (...) {
+        cerr << "Interpreter Error: Unhandled Exception" << endl;
+    }
+
+    return temp;
 }
